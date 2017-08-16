@@ -6,7 +6,7 @@ from urllib.parse import urlsplit, urljoin
 import falcon
 import requests
 import vk
-import botan
+from botanio import botan
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 GROUP_ID = int(os.environ.get('GROUP_ID'))
