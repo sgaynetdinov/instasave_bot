@@ -6,11 +6,13 @@ from urllib.parse import urlsplit, urljoin
 import falcon
 import requests
 import vk
+import botan
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 GROUP_ID = int(os.environ.get('GROUP_ID'))
 GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
 CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
+BOTAN_TOKEN = os.environ.get('BOTAN_TOKEN')
 
 api = vk.Api(GROUP_TOKEN)
 group = api.get_group(GROUP_ID)
@@ -59,6 +61,8 @@ class Bot(object):
         if "message_new" == data.get("type"):
             message_object = data['object']
             message_text = message_object['body']
+
+            botan.track(BOTAN_TOKEN, message_object['user_id'], message_text, "message_new")
 
             if not self.is_instagram_link(message_text):
                 group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
