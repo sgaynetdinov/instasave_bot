@@ -1,11 +1,8 @@
 import json
-import os
 
 import falcon
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-GROUP_ID = int(os.environ.get('GROUP_ID'))
-CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
+from .config import SECRET_KEY, GROUP_ID, CONFIRMATION_KEY
 
 
 class JSONMiddleware(object):

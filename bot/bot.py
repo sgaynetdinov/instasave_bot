@@ -1,5 +1,4 @@
 import io
-import os
 from urllib.parse import urlsplit, urljoin
 
 import requests
@@ -7,10 +6,7 @@ import vk
 from botanio import botan
 
 from .error import InstagramError
-
-GROUP_ID = int(os.environ.get('GROUP_ID'))
-GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
-BOTAN_TOKEN = os.environ.get('BOTAN_TOKEN')
+from .config import GROUP_ID, GROUP_TOKEN, BOTAN_TOKEN
 
 api = vk.Api(GROUP_TOKEN)
 group = api.get_group(GROUP_ID)
