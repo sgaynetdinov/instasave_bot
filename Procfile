@@ -1,1 +1,1 @@
-web: gunicorn bot:start --preload --timeout 10
+web: gunicorn bot.wsgi:application --preload --timeout 10

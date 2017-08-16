@@ -1,0 +1,2 @@
+class InstagramError(Exception):
+    pass

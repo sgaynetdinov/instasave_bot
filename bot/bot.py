@@ -1,57 +1,19 @@
 import io
-import json
 import os
 from urllib.parse import urlsplit, urljoin
 
-import falcon
 import requests
 import vk
 from botanio import botan
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+from .error import InstagramError
+
 GROUP_ID = int(os.environ.get('GROUP_ID'))
 GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
-CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
 BOTAN_TOKEN = os.environ.get('BOTAN_TOKEN')
 
 api = vk.Api(GROUP_TOKEN)
 group = api.get_group(GROUP_ID)
-
-
-class InstagramError(Exception):
-    pass
-
-
-class JSONMiddleware(object):
-    def process_request(self, req, resp):
-        if not req.content_length:
-            raise falcon.HTTPBadRequest('Not empty')
-
-        try:
-            req.context['data'] = json.loads(req.stream.read())
-        except (ValueError, UnicodeDecodeError):
-            raise falcon.HTTPBadRequest('Not valid JSON')
-
-
-class SecretKeyMiddleware(object):
-    def process_request(self, req, resp):
-        data = req.context['data']
-        if SECRET_KEY != data.get('secret') and "confirmation" != data.get('type'):
-            raise falcon.HTTPBadRequest('Invalid request')
-
-
-class CheckGroupMiddleware(object):
-    def process_request(self, req, resp):
-        data = req.context['data']
-        if GROUP_ID != data.get('group_id'):
-            raise falcon.HTTPBadRequest('Invalid request')
-
-
-class ConfirmationMiddleware(object):
-    def process_response(self, req, resp, resource):
-        data = req.context['data']
-        if "confirmation" == data.get("type"):
-            resp.data = bytes(CONFIRMATION_KEY, 'ascii')
 
 
 class Bot(object):
@@ -90,13 +52,3 @@ class Bot(object):
             raise InstagramError()
         file_like = ('photo.jpg', io.BytesIO(response.content))
         return file_like
-
-
-application = start = falcon.API(middleware=[
-    JSONMiddleware(),
-    SecretKeyMiddleware(),
-    CheckGroupMiddleware(),
-    ConfirmationMiddleware()
-])
-
-application.add_route('/', Bot())
