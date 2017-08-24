@@ -42,6 +42,9 @@ class Bot(object):
         return False
 
     def get_instagram_photo(self, instagram_photo_link):
+        if instagram_photo_link[-1] != '/':
+            instagram_photo_link += '/'
+
         url = urljoin(instagram_photo_link, 'media/?size=l')
         response = requests.get(url)
         if not response.ok:
