@@ -14,6 +14,7 @@ group = api.get_group(GROUP_ID)
 
 class Bot(object):
     def on_post(self, req, resp):
+        resp.data = b'ok'
         data = req.context['data']
 
         if "message_new" == data.get("type"):
@@ -32,7 +33,6 @@ class Bot(object):
                     group.send_messages(message_object['user_id'], message='Не могу найти фото, проверьте пожалуйста ссылку')
                     botan.track(BOTAN_TOKEN, message_object['user_id'], message_text, "not_found_instagram_link")
 
-        resp.data = b'ok'
 
     def is_instagram_link(self, link):
         url = urlsplit(link)
