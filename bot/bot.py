@@ -16,12 +16,13 @@ class Bot(object):
         resp.data = b'ok'
         data = req.context['data']
 
-        group.messages_set_typing()
-
         if "message_new" == data.get("type"):
             message_object = data['object']
             message_text = message_object['body']
             user_id = message_object['user_id']
+
+            user = api.get_user(user_id)
+            group.messages_set_typing(user)
 
             if not self.is_instagram_link(message_text):
                 group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
@@ -32,7 +33,6 @@ class Bot(object):
                 except InstagramError:
                     group.send_messages(message_object['user_id'], message='Не могу найти фото, проверьте пожалуйста ссылку')
 
-            user = api.get_user(user_id)
             if user not in group:
                 group.send_messages(message_object['user_id'], message='Пожалуйста не забудьте подписать на https://vk.com/instasave_bot :v:')
 
