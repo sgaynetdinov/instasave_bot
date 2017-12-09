@@ -3,10 +3,9 @@ from urllib.parse import urlsplit, urljoin
 
 import requests
 import vk
-from botanio import botan
 
 from .error import InstagramError
-from .config import GROUP_ID, GROUP_TOKEN, BOTAN_TOKEN
+from .config import GROUP_ID, GROUP_TOKEN
 
 api = vk.Api(GROUP_TOKEN)
 group = api.get_group(GROUP_ID)
@@ -23,15 +22,12 @@ class Bot(object):
 
             if not self.is_instagram_link(message_text):
                 group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
-                botan.track(BOTAN_TOKEN, message_object['user_id'], message_text, "is_not_link_instagram")
             else:
                 try:
                     instagram_photo = self.get_instagram_photo(instagram_photo_link=message_text)
                     group.send_messages(message_object['user_id'], image_files=[instagram_photo])
-                    botan.track(BOTAN_TOKEN, message_object['user_id'], message_text, "send_instagram_photo")
                 except InstagramError:
                     group.send_messages(message_object['user_id'], message='Не могу найти фото, проверьте пожалуйста ссылку')
-                    botan.track(BOTAN_TOKEN, message_object['user_id'], message_text, "not_found_instagram_link")
 
 
     def is_instagram_link(self, link):
