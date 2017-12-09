@@ -16,6 +16,8 @@ class Bot(object):
         resp.data = b'ok'
         data = req.context['data']
 
+        group.messages_set_typing()
+
         if "message_new" == data.get("type"):
             message_object = data['object']
             message_text = message_object['body']
