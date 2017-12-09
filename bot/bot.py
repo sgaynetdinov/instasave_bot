@@ -29,7 +29,6 @@ class Bot(object):
                 except InstagramError:
                     group.send_messages(message_object['user_id'], message='Не могу найти фото, проверьте пожалуйста ссылку')
 
-
     def is_instagram_link(self, link):
         url = urlsplit(link)
         if url.netloc in ["www.instagram.com", "instagram.com"]:
