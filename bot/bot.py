@@ -1,6 +1,7 @@
 import io
 from urllib.parse import urlsplit, urljoin
 import json
+import concurrent.futures
 
 import requests
 import vk
@@ -10,6 +11,71 @@ from .config import GROUP_ID, GROUP_TOKEN
 
 api = vk.Api(GROUP_TOKEN)
 group = api.get_group(GROUP_ID)
+
+
+def is_instagram_link(link):
+    url = urlsplit(link)
+    if url.netloc in ["www.instagram.com", "instagram.com"]:
+        return True
+
+    return False
+
+
+def _get_instagram_response(instagram_link):
+    response = requests.get(instagram_link)
+    return response.text
+
+
+def _is_slider(instagram_response_text):
+    check_is_slider = 'edge_sidecar_to_children'
+    if instagram_response_text.find(check_is_slider) > 0:
+        return True
+    return False
+
+
+def _get_url_instagram_slider(instagram_response_text):
+    start = '<script type="text/javascript">window._sharedData = {'
+    stop = '};</script>'
+
+    start_position = instagram_response_text.find(start)
+    stop_position = instagram_response_text.find(stop)
+
+    raw_json = instagram_response_text[start_position + len(start) - 1:stop_position + 1]
+    j = json.loads(raw_json)
+
+    edges = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']
+    for edge in edges:
+        response = requests.get(edge['node']['display_url'])
+        if not response.ok:
+            raise InstagramError()
+        file_like = ('photo.jpg', io.BytesIO(response.content))
+        yield file_like
+
+
+def get_instagram_photo(instagram_photo_link):
+    if not instagram_photo_link.endswith('/'):
+        instagram_photo_link += '/'
+
+    url = urljoin(instagram_photo_link, 'media/?size=l')
+    response = requests.get(url)
+    if not response.ok:
+        raise InstagramError()
+    file_like = ('photo.jpg', io.BytesIO(response.content))
+    return file_like
+
+
+def send_message(instagram_link, user):
+    try:
+        text = _get_instagram_response(instagram_link)
+        if _is_slider(text):
+            for instagram_photo in _get_url_instagram_slider(text):
+                group.messages_set_typing(user)
+                group.send_messages(user.id, image_files=[instagram_photo])
+        else:
+            instagram_photo = get_instagram_photo(instagram_photo_link=instagram_link)
+            group.send_messages(user.id, image_files=[instagram_photo])
+    except InstagramError:
+        group.send_messages(user.id, message='Не могу найти фото, проверьте пожалуйста ссылку')
 
 
 class Bot(object):
@@ -25,66 +91,12 @@ class Bot(object):
             user = api.get_user(user_id)
             group.messages_set_typing(user)
 
-            if not self.is_instagram_link(message_text):
+            if not is_instagram_link(message_text):
                 group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
             else:
-                try:
-                    text = self._get_instagram_response(message_text)
-                    if self._is_slider(text):
-                        for instagram_photo in self._get_url_instagram_slider(text):
-                            group.messages_set_typing(user)
-                            group.send_messages(message_object['user_id'], image_files=[instagram_photo])
-                    else:
-                        instagram_photo = self.get_instagram_photo(instagram_photo_link=message_text)
-                        group.send_messages(message_object['user_id'], image_files=[instagram_photo])
-                except InstagramError:
-                    group.send_messages(message_object['user_id'], message='Не могу найти фото, проверьте пожалуйста ссылку')
+                with concurrent.futures.ThreadPoolExecutor(1) as executor:
+                    executor.submit(send_message, message_text, user)
 
             if user not in group:
+                group.messages_set_typing(user)
                 group.send_messages(message_object['user_id'], message='Пожалуйста не забудьте подписать на https://vk.com/instasave_bot :v:')
-
-    def is_instagram_link(self, link):
-        url = urlsplit(link)
-        if url.netloc in ["www.instagram.com", "instagram.com"]:
-            return True
-
-        return False
-
-    def _get_instagram_response(self, instagram_link):
-        response = requests.get(instagram_link)
-        return response.text
-
-    def _is_slider(self, instagram_response_text):
-        check_is_slider = 'edge_sidecar_to_children'
-        if instagram_response_text.find(check_is_slider) > 0:
-            return True
-        return False
-
-    def _get_url_instagram_slider(self, instagram_response_text):
-        start = '<script type="text/javascript">window._sharedData = {'
-        stop = '};</script>'
-
-        start_position = instagram_response_text.find(start)
-        stop_position = instagram_response_text.find(stop)
-
-        raw_json = instagram_response_text[start_position+len(start)-1:stop_position+1]
-        j = json.loads(raw_json)
-
-        edges = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']
-        for edge in edges:
-            response = requests.get(edge['node']['display_url'])
-            if not response.ok:
-                raise InstagramError()
-            file_like = ('photo.jpg', io.BytesIO(response.content))
-            yield file_like
-
-    def get_instagram_photo(self, instagram_photo_link):
-        if not instagram_photo_link.endswith('/'):
-            instagram_photo_link += '/'
-
-        url = urljoin(instagram_photo_link, 'media/?size=l')
-        response = requests.get(url)
-        if not response.ok:
-            raise InstagramError()
-        file_like = ('photo.jpg', io.BytesIO(response.content))
-        return file_like
