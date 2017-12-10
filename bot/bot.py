@@ -94,7 +94,7 @@ class Bot(object):
             if not is_instagram_link(message_text):
                 group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
             else:
-                with concurrent.futures.ThreadPoolExecutor(1) as executor:
+                with concurrent.futures.ProcessPoolExecutor(1) as executor:
                     executor.submit(send_message, message_text, user)
 
             if user not in group:
