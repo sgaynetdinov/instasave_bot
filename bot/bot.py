@@ -31,8 +31,8 @@ class Bot(object):
                 try:
                     text = self._get_instagram_response(message_text)
                     if self._is_slider(text):
-                        instagram_photo_items = list(self._get_url_instagram_slider(text))
-                        group.send_messages(message_object['user_id'], image_files=instagram_photo_items)
+                        for instagram_photo in self._get_url_instagram_slider(text):
+                            group.send_messages(message_object['user_id'], image_files=[instagram_photo])
                     else:
                         instagram_photo = self.get_instagram_photo(instagram_photo_link=message_text)
                         group.send_messages(message_object['user_id'], image_files=[instagram_photo])
