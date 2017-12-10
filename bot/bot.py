@@ -71,7 +71,11 @@ class Bot(object):
 
         edges = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']
         for edge in edges:
-            yield edge['node']['display_url']
+            response = requests.get(edge['node']['display_url'])
+            if not response.ok:
+                raise InstagramError()
+            file_like = ('photo.jpg', io.BytesIO(response.content))
+            yield file_like
 
     def get_instagram_photo(self, instagram_photo_link):
         if not instagram_photo_link.endswith('/'):
