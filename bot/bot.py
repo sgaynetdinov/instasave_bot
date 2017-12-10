@@ -1,7 +1,7 @@
 import io
 from urllib.parse import urlsplit, urljoin
 import json
-import concurrent.futures
+import threading
 
 import requests
 import vk
@@ -65,6 +65,10 @@ def get_instagram_photo(instagram_photo_link):
 
 
 def send_message(instagram_link, user):
+    if not is_instagram_link(instagram_link):
+        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
+        return None
+
     try:
         text = _get_instagram_response(instagram_link)
         if _is_slider(text):
@@ -91,11 +95,7 @@ class Bot(object):
             user = api.get_user(user_id)
             group.messages_set_typing(user)
 
-            if not is_instagram_link(message_text):
-                group.send_messages(message_object['user_id'], message='Отправьте пожалуйста ссылку на фото из instagram.com')
-            else:
-                with concurrent.futures.ProcessPoolExecutor(1) as executor:
-                    executor.submit(send_message, message_text, user)
+            threading.Thread(target=send_message, args=(message_text, user)).start()
 
             if user not in group:
                 group.messages_set_typing(user)
