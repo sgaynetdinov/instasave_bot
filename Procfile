@@ -1,1 +1,1 @@
-web: gunicorn bot.wsgi:application -w 3 --timeout 60
+web: gunicorn bot.wsgi:application --timeout 60
