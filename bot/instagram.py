@@ -4,6 +4,9 @@ import io
 import json
 
 
+__all__ = ('get_instagram_photos', 'is_instagram_link', 'InstagramError')
+
+
 class InstagramError(Exception):
     pass
 
