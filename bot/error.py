@@ -1,2 +1,0 @@
-class InstagramError(Exception):
-    pass
