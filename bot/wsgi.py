@@ -1,6 +1,6 @@
 import falcon
 
-from .bot import Bot
+from . import vk_bot
 from .middleware import JSONMiddleware, SecretKeyMiddleware, CheckGroupMiddleware, ConfirmationMiddleware
 
 application = start = falcon.API(middleware=[
@@ -10,4 +10,4 @@ application = start = falcon.API(middleware=[
     ConfirmationMiddleware()
 ])
 
-application.add_route('/', Bot())
+application.add_route('/', vk_bot.Bot())
