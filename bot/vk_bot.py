@@ -39,4 +39,4 @@ class Bot(object):
 
             if user not in group:
                 group.messages_set_typing(user)
-                group.send_messages(message_object['user_id'], message='Пожалуйста не забудьте подписать на https://vk.com/instasave_bot :v:')
+                group.send_messages(message_object['user_id'], message='Пожалуйста не забудьте подписаться на https://vk.com/instasave_bot :v:')
