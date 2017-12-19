@@ -2,7 +2,7 @@ import json
 
 import falcon
 
-from .config import SECRET_KEY, GROUP_ID, CONFIRMATION_KEY
+from .config import VK_SECRET_KEY, VK_GROUP_ID, VK_CONFIRMATION_KEY
 
 
 class JSONMiddleware(object):
@@ -19,14 +19,14 @@ class JSONMiddleware(object):
 class SecretKeyMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
-        if SECRET_KEY != data.get('secret') and "confirmation" != data.get('type'):
+        if VK_SECRET_KEY != data.get('secret') and "confirmation" != data.get('type'):
             raise falcon.HTTPBadRequest('Invalid request')
 
 
 class CheckGroupMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
-        if GROUP_ID != data.get('group_id'):
+        if VK_GROUP_ID != data.get('group_id'):
             raise falcon.HTTPBadRequest('Invalid request')
 
 
@@ -34,4 +34,4 @@ class ConfirmationMiddleware(object):
     def process_response(self, req, resp, resource):
         data = req.context['data']
         if "confirmation" == data.get("type"):
-            resp.data = bytes(CONFIRMATION_KEY, 'ascii')
+            resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')

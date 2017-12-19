@@ -2,11 +2,11 @@ import threading
 
 import vk
 
-from .config import GROUP_ID, GROUP_TOKEN
+from .config import VK_GROUP_ID, VK_GROUP_TOKEN
 from .instagram import is_instagram_link, get_instagram_photos, InstagramError
 
-api = vk.Api(GROUP_TOKEN)
-group = api.get_group(GROUP_ID)
+api = vk.Api(VK_GROUP_TOKEN)
+group = api.get_group(VK_GROUP_ID)
 
 
 def send_message(instagram_link, user):
