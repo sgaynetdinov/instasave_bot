@@ -1,5 +1,5 @@
 falcon==1.2.0
 gunicorn==19.7.1
-py-vkontakte==5.53.6
+py-vkontakte==5.53.7
 requests==2.18.3
 opbeat==3.6.0
