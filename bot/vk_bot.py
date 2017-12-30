@@ -36,8 +36,9 @@ class Bot(object):
 
             user = api.get_user(user_id)
 
+            group.messages_set_typing(user)
+
             if user not in group:
-                group.messages_set_typing(user)
                 group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
                 time.sleep(10)
 
