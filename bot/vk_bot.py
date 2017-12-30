@@ -38,7 +38,6 @@ class Bot(object):
             if user not in group:
                 group.messages_set_typing(user)
                 group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
-
-            time.sleep(10)
+                time.sleep(10)
 
             threading.Thread(target=send_message, args=(message_text, user)).start()
