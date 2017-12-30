@@ -1,4 +1,5 @@
 import threading
+import time
 
 import vk
 
@@ -33,10 +34,11 @@ class Bot(object):
             user_id = message_object['user_id']
 
             user = api.get_user(user_id)
-            group.messages_set_typing(user)
-
-            threading.Thread(target=send_message, args=(message_text, user)).start()
 
             if user not in group:
                 group.messages_set_typing(user)
-                group.send_messages(message_object['user_id'], message='Пожалуйста не забудьте подписаться на https://vk.com/instasave_bot :v:')
+                group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
+
+            time.sleep(10)
+
+            threading.Thread(target=send_message, args=(message_text, user)).start()
