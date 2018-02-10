@@ -26,10 +26,10 @@ def _get_instagram_photos(instagram_response_text):
     start_position = instagram_response_text.find(start)
     stop_position = instagram_response_text.find(stop)
 
-    start = start_position + len(start)-1
-    stop = stop_position + 1
+    start_slice = start_position + len(start)-1
+    stop_slice = stop_position + 1
 
-    raw_json = instagram_response_text[start:stop]
+    raw_json = instagram_response_text[start_slice:stop_slice]
     j = json.loads(raw_json)
 
     edges = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']
