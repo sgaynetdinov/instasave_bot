@@ -11,7 +11,7 @@ class InstagramError(Exception):
     pass
 
 
-def is_instagram_link(link):
+def is_instagram_link(link: str) -> bool:
     url = urlsplit(link)
     if url.netloc in ["www.instagram.com", "instagram.com"]:
         return True
@@ -50,7 +50,7 @@ def _get_instagram_photo(instagram_photo_link):
     return [file_like]
 
 
-def _is_slider(instagram_response_text):
+def _is_slider(instagram_response_text: str) -> bool:
     check_is_slider = 'edge_sidecar_to_children'
     if instagram_response_text.find(check_is_slider) > 0:
         return True
