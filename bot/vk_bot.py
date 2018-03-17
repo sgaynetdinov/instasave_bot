@@ -18,8 +18,8 @@ def send_message(instagram_link, user):
 
     try:
         for instagram_photo in get_instagram_photos(instagram_link):
-            group.send_messages(user.id, image_files=[instagram_photo])
             group.messages_set_typing(user)
+            group.send_messages(user.id, image_files=[instagram_photo])
     except InstagramError:
         group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
 
