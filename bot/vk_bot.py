@@ -19,6 +19,7 @@ def send_message(instagram_link, user):
     try:
         for instagram_photo in get_instagram_photos(instagram_link):
             group.send_messages(user.id, image_files=[instagram_photo])
+            group.messages_set_typing(user)
     except InstagramError:
         group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
 
@@ -35,9 +36,8 @@ class Bot(object):
 
             user = api.get_user(user_id)
 
-            group.messages_set_typing(user)
-
             if user not in group:
+                group.messages_set_typing(user)
                 group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
 
             threading.Thread(target=send_message, args=(message_text, user)).start()
