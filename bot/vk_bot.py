@@ -48,4 +48,4 @@ class Bot(object):
         data = req.context['data']
 
         if "message_new" == data.get("type"):
-            pool.submit(handler_new_message, (data,))
+            pool.submit(handler_new_message, data)
