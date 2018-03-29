@@ -1,4 +1,4 @@
-import threading
+from concurrent.futures import ProcessPoolExecutor
 
 import vk
 
@@ -24,20 +24,28 @@ def send_message(instagram_link, user):
         group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
 
 
+def handler_new_message(data):
+    message_object = data['object']
+    message_text = message_object['body']
+    user_id = message_object['user_id']
+
+    user = api.get_user(user_id)
+
+    if user not in group:
+        group.messages_set_typing(user)
+        group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
+
+    send_message(message_text, user)
+
+
+COUNT_WORKER = 3
+pool = ProcessPoolExecutor(COUNT_WORKER)
+
+
 class Bot(object):
     def on_post(self, req, resp):
         resp.data = b'ok'
         data = req.context['data']
 
         if "message_new" == data.get("type"):
-            message_object = data['object']
-            message_text = message_object['body']
-            user_id = message_object['user_id']
-
-            user = api.get_user(user_id)
-
-            if user not in group:
-                group.messages_set_typing(user)
-                group.send_messages(message_object['user_id'], message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
-
-            threading.Thread(target=send_message, args=(message_text, user)).start()
+            pool.submit(handler_new_message, (data,))
