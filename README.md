@@ -8,3 +8,9 @@
 - https://vk.me/instasave_bot — чат
 
 Получаем сообщения от Вконтакте через [Callback API](https://vk.com/dev/callback_api).
+
+Не обходимо в `environment`, добавить следующие ключи:
+- SECRET_KEY
+- CONFIRMATION_KEY
+- GROUP_ID
+- GROUP_TOKEN
