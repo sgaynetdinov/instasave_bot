@@ -9,7 +9,7 @@
 
 Получаем сообщения от Вконтакте через [Callback API](https://vk.com/dev/callback_api).
 
-Не обходимо в `environment`, добавить следующие ключи:
+Необходимо в `environment`, добавить следующие ключи:
 - SECRET_KEY
 - CONFIRMATION_KEY
 - GROUP_ID
