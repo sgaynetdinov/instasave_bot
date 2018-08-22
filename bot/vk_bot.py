@@ -1,3 +1,5 @@
+from concurrent.futures import ThreadPoolExecutor
+
 import vk
 
 from .config import VK_GROUP_ID, VK_GROUP_TOKEN
@@ -13,7 +15,8 @@ class Bot:
         data = req.context['data']
 
         if "message_new" == data.get("type"):
-            self.handler_new_message(data)
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                executor.submit(self.handler_new_message, data)
 
     def handler_new_message(self, data):
         message_text = data['object']['body']
