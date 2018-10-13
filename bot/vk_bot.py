@@ -27,6 +27,10 @@ def handler_new_message(data):
 
     user = api.get_user(user_id)
 
+    if not Instagram.is_instagram_link(instagram_link):
+        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
+        return None
+
     if user not in group:
         group.messages_set_typing(user)
         group.send_messages(user_id, message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
@@ -37,10 +41,6 @@ def send_message(instagram_link, user):
     group.messages_set_typing(user)
 
     instagram = Instagram.from_url(instagram_link)
-
-    if not instagram.is_instagram_link(instagram_link):
-        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
-        return None
 
     group.send_messages(user.id, message=instagram.get_text())
 
