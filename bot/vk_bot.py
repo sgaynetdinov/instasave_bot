@@ -15,7 +15,7 @@ class Bot:
         data = req.context['data']
 
         if "message_new" == data.get("type"):
-            Process(target=handler_new_message, args=(data,))
+            Process(target=handler_new_message, args=(data,)).start()
 
 
 def handler_new_message(data):
