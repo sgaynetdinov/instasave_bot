@@ -4,62 +4,53 @@ from urllib.parse import urljoin, urlsplit
 
 import requests
 
-__all__ = ('get_instagram_photos', 'is_instagram_link', 'InstagramError')
+__all__ = ('Instagram', 'InstagramError')
 
 
 class InstagramError(Exception):
     pass
 
 
-def is_instagram_link(link: str) -> bool:
-    url = urlsplit(link)
-    if url.netloc in ["www.instagram.com", "instagram.com"]:
-        return True
+class Instagram:
+    def __init__(self, instagram_json):
+        self.instagram_json = instagram_json
 
-    return False
+    @classmethod
+    def from_url(cls, instagram_url):
+        response = requests.get(instagram_url)
 
+        start = '<script type="text/javascript">window._sharedData = {'
+        stop = '};</script>'
 
-def _get_instagram_photos_url(instagram_response_text):
-    start = '<script type="text/javascript">window._sharedData = {'
-    stop = '};</script>'
+        start_position = response.text.find(start)
+        stop_position = response.text.find(stop)
 
-    start_position = instagram_response_text.find(start)
-    stop_position = instagram_response_text.find(stop)
+        start_slice = start_position + len(start)-1
+        stop_slice = stop_position + 1
 
-    start_slice = start_position + len(start)-1
-    stop_slice = stop_position + 1
+        raw_json = response.text[start_slice:stop_slice]
+        instagram_json = json.loads(raw_json)
 
-    raw_json = instagram_response_text[start_slice:stop_slice]
-    j = json.loads(raw_json)
+        return cls(instagram_json)
 
-    content = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+    def get_photos_url(self):
+        content = self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
-    image_url_items = []
+        image_url_items = []
 
-    if 'edge_sidecar_to_children' in content:
-        for edge in content['edge_sidecar_to_children']['edges']:
-            image_url_items.append(edge['node']['display_url'])
-    else:
-        image_url_items.append(content['display_url'])
+        if 'edge_sidecar_to_children' in content:
+            for edge in content['edge_sidecar_to_children']['edges']:
+                image_url_items.append(edge['node']['display_url'])
+        else:
+            image_url_items.append(content['display_url'])
 
-    return image_url_items
-
-
-def _get_photos(urls):
-    for url in urls:
-        response = requests.get(url)
-        if not response.ok:
-            raise InstagramError()
-        file_like = ('photo.jpg', io.BytesIO(response.content))
-        yield file_like
+        return image_url_items
 
 
-def get_instagram_photos(instagram_photo_link):
-    if not instagram_photo_link.endswith('/'):
-        instagram_photo_link += '/'
+    @staticmethod
+    def is_instagram_link(link: str) -> bool:
+        url = urlsplit(link)
+        if url.netloc in ["www.instagram.com", "instagram.com"]:
+            return True
 
-    response = requests.get(instagram_photo_link)
-    raw_html = response.text
-
-    photo_urls = _get_instagram_photos_url(raw_html)
-    return _get_photos(photo_urls)
+        return False
