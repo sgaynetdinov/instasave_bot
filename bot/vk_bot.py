@@ -6,7 +6,7 @@ import requests
 import vk
 
 from .config import VK_GROUP_ID, VK_GROUP_TOKEN
-from .instagram import Instagram, InstagramError
+from .instagram import Instagram, Instagram404Error
 
 api = vk.Api(VK_GROUP_TOKEN)
 group = api.get_group(VK_GROUP_ID)
@@ -36,17 +36,18 @@ def handler_new_message(data):
 def send_message(instagram_link, user):
     group.messages_set_typing(user)
 
-    instagram = Instagram.from_url(instagram_link)
+    try:
+        instagram = Instagram.from_url(instagram_link)
+    except Instagram404Error:
+        group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
+        return
 
     group.send_messages(user.id, message=instagram.get_text())
 
-    try:
-        photo_urls = instagram.get_photos_url()
-        for instagram_photo in get_photos(photo_urls):
-            group.messages_set_typing(user)
-            group.send_messages(user.id, image_files=[instagram_photo])
-    except InstagramError:
-        group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
+    photo_urls = instagram.get_photos_url()
+    for instagram_photo in get_photos(photo_urls):
+        group.messages_set_typing(user)
+        group.send_messages(user.id, image_files=[instagram_photo])
 
 def get_photos(urls):
     for url in urls:

@@ -3,10 +3,14 @@ from urllib.parse import urljoin, urlsplit
 
 import requests
 
-__all__ = ('Instagram', 'InstagramError')
+__all__ = ('Instagram', 'InstagramError', 'Instagram404Error')
 
 
 class InstagramError(Exception):
+    pass
+
+
+class Instagram404Error(InstagramError):
     pass
 
 
@@ -17,6 +21,9 @@ class Instagram:
     @classmethod
     def from_url(cls, instagram_url):
         response = requests.get(instagram_url)
+
+        if not response.ok:
+            raise Instagram404Error
 
         start = '<script type="text/javascript">window._sharedData = {'
         stop = '};</script>'
