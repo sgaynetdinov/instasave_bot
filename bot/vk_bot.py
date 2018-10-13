@@ -1,5 +1,7 @@
 from multiprocessing import Process
 
+import requests
+
 import vk
 
 from .config import VK_GROUP_ID, VK_GROUP_TOKEN
