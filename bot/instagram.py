@@ -1,4 +1,3 @@
-import io
 import json
 from urllib.parse import urljoin, urlsplit
 
