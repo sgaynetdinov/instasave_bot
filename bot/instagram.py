@@ -32,7 +32,13 @@ def _get_instagram_photos(instagram_response_text):
     raw_json = instagram_response_text[start_slice:stop_slice]
     j = json.loads(raw_json)
 
-    edges = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']['edge_sidecar_to_children']['edges']
+    content = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+
+    if 'edge_sidecar_to_children' in content:
+        edges = ['edge_sidecar_to_children']['edges']
+    else:
+        edges = [content['display_url']]
+
     for edge in edges:
         response = requests.get(edge['node']['display_url'])
         if not response.ok:
