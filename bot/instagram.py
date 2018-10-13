@@ -38,7 +38,7 @@ def _get_instagram_photos(instagram_response_text):
 
     if 'edge_sidecar_to_children' in content:
         for edge in content['edge_sidecar_to_children']['edges']:
-            imags_url_items.append(edge['node']['display_url'])
+            image_url_items.append(edge['node']['display_url'])
     else:
         image_url_items.append(content['display_url'])
 
