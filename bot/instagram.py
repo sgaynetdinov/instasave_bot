@@ -19,7 +19,7 @@ def is_instagram_link(link: str) -> bool:
     return False
 
 
-def _get_instagram_photos(instagram_response_text):
+def _get_instagram_photos_url(instagram_response_text):
     start = '<script type="text/javascript">window._sharedData = {'
     stop = '};</script>'
 
@@ -42,8 +42,12 @@ def _get_instagram_photos(instagram_response_text):
     else:
         image_url_items.append(content['display_url'])
 
-    for image_url in image_url_items:
-        response = requests.get(image_url)
+    return image_url_items
+
+
+def _get_photos(urls):
+    for url in urls:
+        response = requests.get(url)
         if not response.ok:
             raise InstagramError()
         file_like = ('photo.jpg', io.BytesIO(response.content))
@@ -57,4 +61,5 @@ def get_instagram_photos(instagram_photo_link):
     response = requests.get(instagram_photo_link)
     raw_html = response.text
 
-    return _get_instagram_photos(raw_html)
+    photo_urls = _get_instagram_photos_url(raw_html)
+    return _get_photos(photo_urls)
