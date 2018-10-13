@@ -35,7 +35,7 @@ def _get_instagram_photos(instagram_response_text):
     content = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
     if 'edge_sidecar_to_children' in content:
-        edges = ['edge_sidecar_to_children']['edges']
+        edges = content['edge_sidecar_to_children']['edges']
     else:
         edges = [content['display_url']]
 
