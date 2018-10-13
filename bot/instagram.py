@@ -34,13 +34,16 @@ def _get_instagram_photos(instagram_response_text):
 
     content = j['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
-    if 'edge_sidecar_to_children' in content:
-        edges = content['edge_sidecar_to_children']['edges']
-    else:
-        edges = [content['display_url']]
+    image_url_items = []
 
-    for edge in edges:
-        response = requests.get(edge['node']['display_url'])
+    if 'edge_sidecar_to_children' in content:
+        for edge in content['edge_sidecar_to_children']['edges']:
+            imags_url_items.appen(edge['node']['display_url'])
+    else:
+        image_url_items.append(content['display_url'])
+
+    for image_url in image_url_items:
+        response = requests.get(image_url)
         if not response.ok:
             raise InstagramError()
         file_like = ('photo.jpg', io.BytesIO(response.content))
