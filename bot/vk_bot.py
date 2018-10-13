@@ -31,10 +31,6 @@ def handler_new_message(data):
         group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
         return None
 
-    if user not in group:
-        group.messages_set_typing(user)
-        group.send_messages(user_id, message='Пожалуйста вступите в сообщество https://vk.com/instasave_bot :v:')
-
     send_message(message_text, user)
 
 def send_message(instagram_link, user):
