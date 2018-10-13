@@ -1,8 +1,8 @@
-from urllib.parse import urlsplit, urljoin
-import requests
 import io
 import json
+from urllib.parse import urljoin, urlsplit
 
+import requests
 
 __all__ = ('get_instagram_photos', 'is_instagram_link', 'InstagramError')
 
@@ -41,22 +41,6 @@ def _get_instagram_photos(instagram_response_text):
         yield file_like
 
 
-def _get_instagram_photo(instagram_photo_link):
-    url = urljoin(instagram_photo_link, 'media/?size=l')
-    response = requests.get(url)
-    if not response.ok:
-        raise InstagramError()
-    file_like = ('photo.jpg', io.BytesIO(response.content))
-    return [file_like]
-
-
-def _is_slider(instagram_response_text: str) -> bool:
-    check_is_slider = 'edge_sidecar_to_children'
-    if instagram_response_text.find(check_is_slider) > 0:
-        return True
-    return False
-
-
 def get_instagram_photos(instagram_photo_link):
     if not instagram_photo_link.endswith('/'):
         instagram_photo_link += '/'
@@ -64,7 +48,4 @@ def get_instagram_photos(instagram_photo_link):
     response = requests.get(instagram_photo_link)
     raw_html = response.text
 
-    if _is_slider(raw_html):
-        return _get_instagram_photos(raw_html)
-    else:
-        return _get_instagram_photo(instagram_photo_link)
+    return _get_instagram_photos(raw_html)
