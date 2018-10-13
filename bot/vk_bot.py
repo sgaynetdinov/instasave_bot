@@ -28,7 +28,7 @@ def handler_new_message(data):
     user = api.get_user(user_id)
 
     if not Instagram.is_instagram_link(message_text):
-        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
+        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из Instagram')
         return None
 
     send_message(message_text, user)
