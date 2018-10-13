@@ -42,6 +42,8 @@ def send_message(instagram_link, user):
         group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из instagram.com')
         return None
 
+    group.send_messages(user.id, message=instagram.get_text())
+
     try:
         photo_urls = instagram.get_photos_url()
         for instagram_photo in get_photos(photo_urls):

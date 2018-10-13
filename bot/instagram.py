@@ -45,6 +45,11 @@ class Instagram:
 
         return image_url_items
 
+    def get_text(self):
+        content = self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+        text = content['edge_media_to_caption']['edges'][0]['node']['text']
+
+        return text
 
     @staticmethod
     def is_instagram_link(link: str) -> bool:
