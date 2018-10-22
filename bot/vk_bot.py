@@ -4,6 +4,7 @@ from multiprocessing import Process
 import requests
 
 import vk
+from vk.error import VKParseJsonError
 
 from .config import VK_GROUP_ID, VK_GROUP_TOKEN
 from .instagram import Instagram, Instagram404Error
@@ -33,6 +34,7 @@ def handler_new_message(data):
 
     send_message(message_text, user)
 
+
 def send_message(instagram_link, user):
     group.messages_set_typing(user)
 
@@ -42,12 +44,16 @@ def send_message(instagram_link, user):
         group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
         return
 
-    group.send_messages(user.id, message=instagram.get_text())
+    try:
+        group.send_messages(user.id, message=instagram.get_text())
+    except VKParseJsonError:
+        pass
 
     photo_urls = instagram.get_photos_url()
     for instagram_photo in get_photos(photo_urls):
         group.messages_set_typing(user)
         group.send_messages(user.id, image_files=[instagram_photo])
+
 
 def get_photos(urls):
     for url in urls:
