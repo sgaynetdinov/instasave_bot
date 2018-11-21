@@ -1,0 +1,14 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+falcon = "==1.2.0"
+gunicorn = "==19.7.1"
+py-vkontakte = "==5.53.7"
+
+[requires]
+python_version = "3.7.1"
