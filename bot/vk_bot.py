@@ -34,7 +34,7 @@ def handler_new_message(data):
 
 
 def send_message(instagram_link, user):
-    group.messages_set_typing(user)
+    group.messages_set_typing(user.id)
 
     try:
         instagram = Instagram.from_url(instagram_link)
@@ -46,7 +46,7 @@ def send_message(instagram_link, user):
 
     photo_urls = instagram.get_photos_url()
     for instagram_photo in get_photos(photo_urls):
-        group.messages_set_typing(user)
+        group.messages_set_typing(user.id)
         group.send_messages(user.id, image_files=[instagram_photo])
 
 
