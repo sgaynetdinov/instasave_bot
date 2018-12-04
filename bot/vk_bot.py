@@ -53,5 +53,4 @@ def send_message(instagram_link, user):
 def get_photos(urls):
     for url in urls:
         response = requests.get(url)
-        file_like = ('photo.jpg', io.BytesIO(response.content))
-        yield file_like
+        yield io.BytesIO(response.content)
