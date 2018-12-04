@@ -2,9 +2,7 @@ import io
 from multiprocessing import Process
 
 import requests
-
 import vk
-from vk.error import VKParseJsonError
 
 from .config import VK_GROUP_ID, VK_GROUP_TOKEN
 from .instagram import Instagram, Instagram404Error
@@ -44,10 +42,7 @@ def send_message(instagram_link, user):
         group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
         return
 
-    try:
-        group.send_messages(user.id, message=instagram.get_text())
-    except VKParseJsonError:
-        pass
+    group.send_messages(user.id, message=instagram.get_text())
 
     photo_urls = instagram.get_photos_url()
     for instagram_photo in get_photos(photo_urls):

@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 falcon = "==1.2.0"
 gunicorn = "==19.7.1"
-py-vkontakte = "==5.53.7"
+py-vkontakte = "==5.63.2"
 
 [requires]
 python_version = "3.6.7"
