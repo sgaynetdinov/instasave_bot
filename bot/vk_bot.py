@@ -4,8 +4,10 @@ from multiprocessing import Process
 import requests
 import vk
 
-from .config import VK_GROUP_ID, VK_GROUP_TOKEN
 from .instagram import Instagram, Instagram404Error
+
+VK_GROUP_ID = int(os.environ.get('GROUP_ID'))
+VK_GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
 
 api = vk.Api(VK_GROUP_TOKEN)
 group = api.get_group(VK_GROUP_ID)
