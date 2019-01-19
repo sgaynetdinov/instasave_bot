@@ -1,7 +1,8 @@
 import json
+from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
+from urllib.request import urlopen
 
-import requests
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error')
 
@@ -20,21 +21,24 @@ class Instagram:
 
     @classmethod
     def from_url(cls, instagram_url):
-        response = requests.get(instagram_url)
-
-        if not response.ok:
-            raise Instagram404Error
+        try:
+            response_text = urlopen(instagram_url).read()
+        except HTTPError as err:
+            if err.code == 404:
+                raise Instagram404Error
 
         start = '<script type="text/javascript">window._sharedData = {'
         stop = '};</script>'
 
-        start_position = response.text.find(start)
-        stop_position = response.text.find(stop)
+        response_text = response_text.decode()
+
+        start_position = response_text.find(start)
+        stop_position = response_text.find(stop)
 
         start_slice = start_position + len(start)-1
         stop_slice = stop_position + 1
 
-        raw_json = response.text[start_slice:stop_slice]
+        raw_json = response_text[start_slice:stop_slice]
         instagram_json = json.loads(raw_json)
 
         return cls(instagram_json)
