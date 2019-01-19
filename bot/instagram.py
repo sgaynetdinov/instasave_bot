@@ -47,8 +47,8 @@ class Instagram:
         image_url_items = []
 
         if 'edge_sidecar_to_children' in self._content:
-            for edge in self._content['edge_sidecar_to_children']['edges']:
-                image_url_items.append(edge['node']['display_url'])
+            display_url = (edge['node']['display_url'] for edge in self._content['edge_sidecar_to_children']['edges'])
+            image_url_items.extend(display_url)
         else:
             image_url_items.append(self._content['display_url'])
 
