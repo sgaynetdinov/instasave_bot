@@ -44,23 +44,22 @@ class Instagram:
         return cls(instagram_json)
 
     def get_photos_url(self):
-        content = self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
-
         image_url_items = []
 
-        if 'edge_sidecar_to_children' in content:
-            for edge in content['edge_sidecar_to_children']['edges']:
+        if 'edge_sidecar_to_children' in self._content:
+            for edge in self._content['edge_sidecar_to_children']['edges']:
                 image_url_items.append(edge['node']['display_url'])
         else:
-            image_url_items.append(content['display_url'])
+            image_url_items.append(self._content['display_url'])
 
         return image_url_items
 
     def get_text(self):
-        content = self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
-        text = content['edge_media_to_caption']['edges'][0]['node']['text']
+        return self._content['edge_media_to_caption']['edges'][0]['node']['text']
 
-        return text
+    @property
+    def _content(self):
+        return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
     @staticmethod
     def is_instagram_link(link: str) -> bool:
