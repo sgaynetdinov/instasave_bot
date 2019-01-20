@@ -1,8 +1,8 @@
 import io
 import os
 from multiprocessing import Process
+from urllib.request import urlopen
 
-import requests
 import vk
 
 from .instagram import Instagram, Instagram404Error
@@ -45,13 +45,6 @@ def send_message(instagram_link, user_id):
 
     group.send_messages(user_id, message=instagram.get_text())
 
-    photo_urls = instagram.get_photos_url()
-    for instagram_photo in get_photos(photo_urls):
+    for url in instagram.get_photos_url():
         group.messages_set_typing(user_id)
-        group.send_messages(user_id, image_files=[instagram_photo])
-
-
-def get_photos(urls):
-    for url in urls:
-        response = requests.get(url)
-        yield io.BytesIO(response.content)
+        group.send_messages(user_id, image_files=[urlopen(url)])
