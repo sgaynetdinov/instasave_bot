@@ -27,30 +27,28 @@ def handler_new_message(data):
     message_text = data['object']['body']
     user_id = data['object']['user_id']
 
-    user = api.get_user(user_id)
-
     if not Instagram.is_instagram_link(message_text):
-        group.send_messages(user.id, message='Отправьте пожалуйста ссылку на фото из Instagram')
+        group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
         return None
 
     send_message(message_text, user)
 
 
-def send_message(instagram_link, user):
-    group.messages_set_typing(user.id)
+def send_message(instagram_link, user_id):
+    group.messages_set_typing(user_id)
 
     try:
         instagram = Instagram.from_url(instagram_link)
     except Instagram404Error:
-        group.send_messages(user.id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
+        group.send_messages(user_id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
         return
 
-    group.send_messages(user.id, message=instagram.get_text())
+    group.send_messages(user_id, message=instagram.get_text())
 
     photo_urls = instagram.get_photos_url()
     for instagram_photo in get_photos(photo_urls):
-        group.messages_set_typing(user.id)
-        group.send_messages(user.id, image_files=[instagram_photo])
+        group.messages_set_typing(user_id)
+        group.send_messages(user_id, image_files=[instagram_photo])
 
 
 def get_photos(urls):
