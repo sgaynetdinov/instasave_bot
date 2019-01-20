@@ -68,7 +68,7 @@ class Instagram:
         return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
     @classmethod
-    def _is_instagram_link(link: str) -> bool:
+    def _is_instagram_link(cls, link: str) -> bool:
         url = urlsplit(link)
         if url.netloc not in ["www.instagram.com", "instagram.com"]:
             raise InstagramLinkError
