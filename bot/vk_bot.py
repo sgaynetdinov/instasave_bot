@@ -20,23 +20,22 @@ class Bot:
         data = req.context['data']
 
         if "message_new" == data.get("type"):
-            Process(target=handler_new_message, args=(data,)).start()
+            Process(target=self.handler_new_message, args=(data,)).start()
 
+    def handler_new_message(self, data):
+        link = data['object']['body']
+        user_id = data['object']['user_id']
 
-def handler_new_message(data):
-    link = data['object']['body']
-    user_id = data['object']['user_id']
+        group.messages_set_typing(user_id)
 
-    group.messages_set_typing(user_id)
-
-    try:
-        instagram = Instagram.from_url(link)
-    except Instagram404Error:
-        group.send_messages(user_id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
-    except InstagramLinkError:
-        group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
-    else:
-        group.send_messages(user_id, message=instagram.get_text())
-        for url in instagram.get_photos_url():
-            group.messages_set_typing(user_id)
-            group.send_messages(user_id, image_files=[urlopen(url)])
+        try:
+            instagram = Instagram.from_url(link)
+        except Instagram404Error:
+            group.send_messages(user_id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
+        except InstagramLinkError:
+            group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
+        else:
+            group.send_messages(user_id, message=instagram.get_text())
+            for url in instagram.get_photos_url():
+                group.messages_set_typing(user_id)
+                group.send_messages(user_id, image_files=[urlopen(url)])
