@@ -5,7 +5,7 @@ from urllib.request import urlopen
 
 import vk
 
-from .instagram import Instagram, Instagram404Error
+from .instagram import Instagram, Instagram404Error, InstagramLinkError
 
 VK_GROUP_ID = int(os.environ.get('GROUP_ID'))
 VK_GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
@@ -29,14 +29,12 @@ def handler_new_message(data):
 
     group.messages_set_typing(user_id)
 
-    if not Instagram.is_instagram_link(link):
-        group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
-        return
-
     try:
         instagram = Instagram.from_url(link)
     except Instagram404Error:
         group.send_messages(user_id, message='Не могу найти, возможно фото/видео доступно только для подписчиков (приватный аккаунт)')
+    except InstagramLinkError:
+        group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
     else:
         group.send_messages(user_id, message=instagram.get_text())
         for url in instagram.get_photos_url():
