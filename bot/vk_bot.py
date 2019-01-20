@@ -31,7 +31,7 @@ def handler_new_message(data):
         group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
         return None
 
-    send_message(message_text, user)
+    send_message(message_text, user_id)
 
 
 def send_message(instagram_link, user_id):
