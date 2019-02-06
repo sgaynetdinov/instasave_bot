@@ -12,5 +12,5 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-            pipenv run python -m unittest discover --start-directory tests/
+            pipenv run python -m unittest discover --start-directory tests/*
 
