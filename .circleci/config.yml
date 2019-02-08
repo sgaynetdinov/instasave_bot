@@ -12,5 +12,20 @@ jobs:
           command: |
             sudo pip install pipenv
             pipenv install
-            pipenv run python -m unittest discover --start-directory tests/*
-
+  unittest:
+    working_directory: ~
+    docker:
+      - image: circleci/python:3.6.7
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+    steps:
+      - checkout
+      - run: pipenv run python -m unittest discover --start-directory tests/
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - unittest:
+          requires:
+            - build
