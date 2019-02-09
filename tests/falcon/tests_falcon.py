@@ -28,3 +28,8 @@ class JSONMiddlewareTestCase(testing.TestCase):
 
        self.assertEqual(got.json['title'], 'Not valid JSON')
        self.assertEqual(got.status, falcon.HTTP_400)
+
+    def test_valid_json(self):
+        got = self.simulate_post('/', body=b'{"a": 1}')
+
+        self.assertEqual(got.status, falcon.HTTP_200)
