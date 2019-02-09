@@ -20,7 +20,7 @@ jobs:
           PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout
-      - run: pipenv run python -m unittest discover --start-directory tests/
+      - run: pipenv run python -m unittest discover
 workflows:
   version: 2
   build_and_test:
