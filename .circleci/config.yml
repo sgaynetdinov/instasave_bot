@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  unittest:
+  build:
     working_directory: ~
     docker:
       - image: circleci/python:3.6.7
