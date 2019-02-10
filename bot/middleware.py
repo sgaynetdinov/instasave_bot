@@ -5,7 +5,7 @@ import falcon
 
 VK_SECRET_KEY = os.environ.get('SECRET_KEY')
 VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
-VK_GROUP_ID = int(os.environ.get('GROUP_ID'))
+VK_GROUP_ID = os.environ.get('GROUP_ID')
 
 
 class JSONMiddleware(object):
@@ -29,7 +29,7 @@ class SecretKeyMiddleware(object):
 class CheckGroupMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
-        if VK_GROUP_ID != data.get('group_id'):
+        if int(VK_GROUP_ID) != data.get('group_id'):
             raise falcon.HTTPBadRequest('Invalid request')
 
 
