@@ -30,7 +30,7 @@ class CheckGroupMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
         if int(VK_GROUP_ID) != data.get('group_id'):
-            raise falcon.HTTPBadRequest('Invalid request')
+            raise falcon.HTTPBadRequest('GROUP_ID is required')
 
 
 class ConfirmationMiddleware(object):
