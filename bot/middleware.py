@@ -3,7 +3,6 @@ import os
 
 import falcon
 
-VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
 VK_GROUP_ID = os.environ.get('GROUP_ID')
 
 
@@ -36,4 +35,5 @@ class ConfirmationMiddleware(object):
     def process_response(self, req, resp, resource):
         data = req.context['data']
         if "confirmation" == data.get("type"):
+            VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
             resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')
