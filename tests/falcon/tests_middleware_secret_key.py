@@ -26,6 +26,6 @@ class SecretKeyMiddlewareTestCase(testing.TestCase):
     def test_invalid_secret(self):
         got = self.simulate_post('/', body=b'{"secret": "INVALID_SECRET", "type": "message_new"}')
 
-        self.assertEqual(got.json['title'], 'Invalid request')
+        self.assertEqual(got.json['title'], 'Invalid SECRET_KEY')
         self.assertEqual(got.status, falcon.HTTP_400)
 

@@ -9,17 +9,22 @@ from .instagram import Instagram, Instagram404Error, InstagramLinkError
 
 VK_GROUP_ID = int(os.environ.get('GROUP_ID'))
 VK_GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
-
-api = vk.Api(VK_GROUP_TOKEN)
-group = api.get_group(VK_GROUP_ID)
+VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
 
 
 class Bot:
     def on_post(self, req, resp):
-        resp.data = b'ok'
         data = req.context['data']
+        
+        if "confirmation" == data.get("type"):
+            resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')
+        else:
+            resp.data = b'ok'
 
         if "message_new" == data.get("type"):
+            api = vk.Api(VK_GROUP_TOKEN)
+            group = api.get_group(VK_GROUP_ID)
+            
             Process(target=self.handler_new_message, args=(data,)).start()
 
     def handler_new_message(self, data):
