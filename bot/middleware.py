@@ -30,10 +30,3 @@ class CheckGroupMiddleware(object):
         if int(VK_GROUP_ID) != data.get('group_id'):
             raise falcon.HTTPBadRequest('GROUP_ID is required')
 
-
-class ConfirmationMiddleware(object):
-    def process_response(self, req, resp, resource):
-        data = req.context['data']
-        if "confirmation" == data.get("type"):
-            VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
-            resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')
