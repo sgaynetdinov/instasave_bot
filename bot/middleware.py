@@ -20,7 +20,7 @@ class JSONMiddleware(object):
 class SecretKeyMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
-        if os.environ.get('SECRET_KEY') != data.get('secret') and "confirmation" != data.get('type'):
+        if os.environ.get('SECRET_KEY') != data.get('secret'):
             raise falcon.HTTPBadRequest('Invalid request')
 
 

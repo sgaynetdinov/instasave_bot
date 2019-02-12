@@ -23,7 +23,7 @@ class ConfirmationTestCase(testing.TestCase):
         self.assertEqual(got.text, 'ok')
 
     def test_type_confirmation(self):
-        got = self.simulate_post('/', body=b'{"type": "confirmation", "group_id": 100500}')
+        got = self.simulate_post('/', body=b'{"type": "confirmation", "group_id": 100500, "secret": "SECRET"}')
 
         self.assertEqual(got.text, 'response confirmation')
 
