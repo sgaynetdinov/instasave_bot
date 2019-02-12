@@ -38,7 +38,7 @@ class InstagramTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_photos_url__multi_photo(self, mock):
-        with open('tests/instagram/multi_photo._html') as fd:
+        with open('tests/instagram/multi_photo.html_') as fd:
             m = MagicMock() 
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -49,7 +49,7 @@ class InstagramTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_photos_url__single_photo(self, mock):
-        with open('tests/instagram/single_photo._html') as fd:
+        with open('tests/instagram/single_photo.html_') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -60,7 +60,7 @@ class InstagramTestCase(unittest.TestCase):
  
     @patch('bot.instagram.urlopen')
     def test_get_text(self, mock):
-        with open('tests/instagram/text._html') as fd:
+        with open('tests/instagram/text.html_') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
