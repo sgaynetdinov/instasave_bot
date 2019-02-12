@@ -21,7 +21,7 @@ class SecretKeyMiddleware(object):
     def process_request(self, req, resp):
         data = req.context['data']
         if os.environ.get('SECRET_KEY') != data.get('secret'):
-            raise falcon.HTTPBadRequest('Invalid request')
+            raise falcon.HTTPBadRequest('Invalid SECRET_KEY')
 
 
 class CheckGroupMiddleware(object):
