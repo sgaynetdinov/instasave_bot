@@ -12,7 +12,7 @@ jobs:
           name: Install dependencies
           command: |
             sudo pip install pipenv
-            pipenv install
+            pipenv install --dev
       - run: 
           name: Run tests
           command: |
