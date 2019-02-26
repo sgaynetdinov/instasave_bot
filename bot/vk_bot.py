@@ -22,15 +22,14 @@ class Bot:
             resp.data = b'ok'
 
         if "message_new" == data.get("type"):
-            api = vk.Api(VK_GROUP_TOKEN)
-            group = api.get_group(VK_GROUP_ID)
-            
-            Process(target=self.handler_new_message, args=(data,)).start()
+            link = data['object']['body']
+            user_id = data['object']['user_id']            
+            Process(target=self.handler_new_message, args=(link, user_id,)).start()
 
-    def handler_new_message(self, data):
-        link = data['object']['body']
-        user_id = data['object']['user_id']
-
+    def handler_new_message(self, link, user_id):
+        api = vk.Api(VK_GROUP_TOKEN)
+        group = api.get_group(VK_GROUP_ID)
+        
         group.messages_set_typing(user_id)
 
         try:
