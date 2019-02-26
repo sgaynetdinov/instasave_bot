@@ -6,9 +6,7 @@ import vk
 
 from .instagram import Instagram, Instagram404Error, InstagramLinkError
 
-VK_GROUP_ID = int(os.environ.get('GROUP_ID'))
 VK_GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
-VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
 
 
 class Bot:
@@ -16,7 +14,7 @@ class Bot:
         data = req.context['data']
 
         if data.get("type") == "confirmation":
-            resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')
+            resp.data = bytes(os.environ.get('CONFIRMATION_KEY'), 'ascii')
         else:
             resp.data = b'ok'
 
@@ -27,7 +25,7 @@ class Bot:
 
     def handler_new_message(self, link, user_id):
         api = vk.Api(VK_GROUP_TOKEN)
-        group = api.get_group(VK_GROUP_ID)
+        group = api.get_group(os.environ.get('GROUP_ID'))
 
         group.messages_set_typing(user_id)
 

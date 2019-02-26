@@ -3,8 +3,6 @@ import os
 
 import falcon
 
-VK_GROUP_ID = os.environ.get('GROUP_ID')
-
 
 class JSONMiddleware:
     def process_request(self, req, resp):
@@ -27,5 +25,6 @@ class SecretKeyMiddleware:
 class CheckGroupMiddleware:
     def process_request(self, req, resp):
         data = req.context['data']
+        VK_GROUP_ID = os.environ.get('GROUP_ID')
         if int(VK_GROUP_ID) != data.get('group_id'):
             raise falcon.HTTPBadRequest('GROUP_ID is required')

@@ -1,11 +1,11 @@
 import os
 
-os.environ['GROUP_ID'] = '100500'
-
 import falcon
 from falcon import testing
 
-from bot.middleware import JSONMiddleware, CheckGroupMiddleware
+from bot.middleware import CheckGroupMiddleware, JSONMiddleware
+
+os.environ['GROUP_ID'] = '100500'
 
 
 class CheckGroupMiddlewareTestCase(testing.TestCase):
@@ -26,4 +26,3 @@ class CheckGroupMiddlewareTestCase(testing.TestCase):
 
         self.assertEqual(got.status, falcon.HTTP_400)
         self.assertEqual(got.json['title'], 'GROUP_ID is required')
-

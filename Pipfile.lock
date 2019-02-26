@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3dbd190f9a2ca12b1c75e44ed6a9fe28c8ada9b0cb649d482c0d1f2615a0f24b"
+            "sha256": "cf821d28f8a2616fd325e68d735695a201ba60d3216ef531a29cf5019ea115af"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -66,6 +66,7 @@
             "hashes": [
                 "sha256:f19b23b22fb5a919a081bc31aabcc0991614c244d9215267e11abf2ca7b684ce"
             ],
+            "index": "pypi",
             "version": "==4.3.9"
         },
         "lazy-object-proxy": {

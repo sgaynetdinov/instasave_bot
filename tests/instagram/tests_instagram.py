@@ -1,8 +1,9 @@
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 from urllib.error import HTTPError
 
-from bot.instagram import Instagram, InstagramLinkError, Instagram404Error, urlopen
+from bot.instagram import (Instagram, Instagram404Error, InstagramLinkError,
+                           urlopen)
 
 
 class InstagramTestCase(unittest.TestCase):
@@ -69,4 +70,3 @@ class InstagramTestCase(unittest.TestCase):
         
         self.assertIn('Incoming spacecraft! 🚀', insta.get_text())
         self.assertEqual(len(insta.get_text()), 940)
- 

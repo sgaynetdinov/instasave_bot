@@ -1,14 +1,14 @@
 import os
 
-os.environ['CONFIRMATION_KEY'] = 'response confirmation'
-os.environ['GROUP_ID'] = '100500'
-os.environ['SECRET_KEY'] = 'SECRET'
-
 import falcon
 from falcon import testing
 
 from bot.middleware import JSONMiddleware
 from bot.wsgi import application
+
+os.environ['CONFIRMATION_KEY'] = 'response confirmation'
+os.environ['GROUP_ID'] = '100500'
+os.environ['SECRET_KEY'] = 'SECRET'
 
 
 class ConfirmationTestCase(testing.TestCase):
@@ -26,4 +26,3 @@ class ConfirmationTestCase(testing.TestCase):
         got = self.simulate_post('/', body=b'{"type": "confirmation", "group_id": 100500, "secret": "SECRET"}')
 
         self.assertEqual(got.text, 'response confirmation')
-
