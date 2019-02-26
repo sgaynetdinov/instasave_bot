@@ -1,6 +1,6 @@
 import json
 from urllib.error import HTTPError
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import urlsplit
 from urllib.request import urlopen
 
 
