@@ -16,5 +16,5 @@ jobs:
       - run: 
           name: Run tests
           command: |
-            pylint --disable C0301,C0111,R0201,C0103,W0613,R0903 bot/
+            pipenv run pylint --disable C0301,C0111,R0201,C0103,W0613,R0903 bot/
             pipenv run python -m unittest discover
