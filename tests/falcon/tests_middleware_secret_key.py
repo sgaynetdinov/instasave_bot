@@ -1,11 +1,11 @@
 import os
 
-os.environ['SECRET_KEY'] = 'SECRET'
-
 import falcon
 from falcon import testing
 
-from bot.middleware import JSONMiddleware, SecretKeyMiddleware 
+from bot.middleware import JSONMiddleware, SecretKeyMiddleware
+
+os.environ['SECRET_KEY'] = 'SECRET'
 
 
 class SecretKeyMiddlewareTestCase(testing.TestCase):
@@ -28,4 +28,3 @@ class SecretKeyMiddlewareTestCase(testing.TestCase):
 
         self.assertEqual(got.json['title'], 'Invalid SECRET_KEY')
         self.assertEqual(got.status, falcon.HTTP_400)
-

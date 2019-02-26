@@ -1,8 +1,8 @@
 import falcon
 
+from .middleware import (CheckGroupMiddleware, JSONMiddleware,
+                         SecretKeyMiddleware)
 from .vk_bot import Bot
-from .middleware import JSONMiddleware, SecretKeyMiddleware, CheckGroupMiddleware
-
 
 application = falcon.API(middleware=[
     JSONMiddleware(),

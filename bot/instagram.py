@@ -3,7 +3,6 @@ from urllib.error import HTTPError
 from urllib.parse import urlsplit
 from urllib.request import urlopen
 
-
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
 
 
