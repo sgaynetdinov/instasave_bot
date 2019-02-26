@@ -12,7 +12,9 @@ jobs:
           name: Install dependencies
           command: |
             sudo pip install pipenv
-            pipenv install
+            pipenv install --dev
       - run: 
           name: Run tests
-          command: pipenv run python -m unittest discover
+          command: |
+            pipenv run pylint --disable C0301,C0111,R0201,C0103,W0613,R0903 bot/
+            pipenv run python -m unittest discover

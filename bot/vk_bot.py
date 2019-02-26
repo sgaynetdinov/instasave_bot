@@ -1,4 +1,3 @@
-import io
 import os
 from multiprocessing import Process
 from urllib.request import urlopen
@@ -15,21 +14,21 @@ VK_CONFIRMATION_KEY = os.environ.get('CONFIRMATION_KEY')
 class Bot:
     def on_post(self, req, resp):
         data = req.context['data']
-        
-        if "confirmation" == data.get("type"):
+
+        if data.get("type") == "confirmation":
             resp.data = bytes(VK_CONFIRMATION_KEY, 'ascii')
         else:
             resp.data = b'ok'
 
-        if "message_new" == data.get("type"):
+        if data.get("type") == "message_new":
             link = data['object']['body']
-            user_id = data['object']['user_id']            
+            user_id = data['object']['user_id']
             Process(target=self.handler_new_message, args=(link, user_id,)).start()
 
     def handler_new_message(self, link, user_id):
         api = vk.Api(VK_GROUP_TOKEN)
         group = api.get_group(VK_GROUP_ID)
-        
+
         group.messages_set_typing(user_id)
 
         try:
