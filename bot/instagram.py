@@ -23,6 +23,13 @@ class Instagram:
         self.instagram_json = instagram_json
 
     @classmethod
+    def _is_private(cls, instagram_json):
+        if 'ProfilePage' not in instagram_json['entry_data']:
+            return False
+
+        return instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']['is_private']
+
+    @classmethod
     def from_url(cls, instagram_url):
         cls._is_instagram_link(instagram_url)
 
@@ -46,6 +53,9 @@ class Instagram:
         raw_json = response_text[start_slice:stop_slice]
         instagram_json = json.loads(raw_json)
 
+        if cls._is_private(instagram_json):
+            raise Instagram404Error
+
         return cls(instagram_json)
 
     def get_photos_url(self):
@@ -60,7 +70,10 @@ class Instagram:
         return image_url_items
 
     def get_text(self):
-        return self._content['edge_media_to_caption']['edges'][0]['node']['text']
+        try:
+            return self._content['edge_media_to_caption']['edges'][0]['node']['text']
+        except IndexError:
+            return None
 
     @property
     def _content(self):
