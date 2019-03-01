@@ -70,3 +70,15 @@ class InstagramTestCase(unittest.TestCase):
         
         self.assertIn('Incoming spacecraft! 🚀', insta.get_text())
         self.assertEqual(len(insta.get_text()), 940)
+
+    @patch('bot.instagram.urlopen')
+    def test_private_account(self, mock):
+        with open('tests/instagram/private_account.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        with self.assertRaises(Instagram404Error):
+            Instagram.from_url('https://www.instagram.com/nasa/')
+
+        

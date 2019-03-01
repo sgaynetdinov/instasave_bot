@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js not-logged-in client-root">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>
+@vzrosloe.video • Instagram photos and videos
+</title>
+
+        
+        <meta name="robots" content="noimageindex, noarchive">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#000000">
+        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+        <link rel="manifest" href="/data/manifest.json">
+
+        <link rel="preload" href="/static/bundles/metro/Vendor.js/b9b00b19edc2.js" as="script" type="text/javascript" crossorigin="anonymous" />
+<link rel="preload" href="/static/bundles/metro/en_US.js/d016bc4ccc55.js" as="script" type="text/javascript" crossorigin="anonymous" />
+<link rel="preload" href="/static/bundles/metro/ConsumerCommons.js/041cb9b4d0a6.js" as="script" type="text/javascript" crossorigin="anonymous" />
+<link rel="preload" href="/static/bundles/metro/Consumer.js/2dee4868e051.js" as="script" type="text/javascript" crossorigin="anonymous" />
+<link rel="preload" href="/static/bundles/metro/ProfilePageContainer.js/6c4bf93684e3.js" as="script" type="text/javascript" crossorigin="anonymous" />
+        
+        
+
+        <script type="text/javascript">
+        (function() {
+  var docElement = document.documentElement;
+  var classRE = new RegExp('(^|\\s)no-js(\\s|$)');
+  var className = docElement.className;
+  docElement.className = className.replace(classRE, '$1js$2');
+})();
+</script>
+        <script type="text/javascript">
+(function() {
+  if ('PerformanceObserver' in window && 'PerformancePaintTiming' in window) {
+    window.__bufferedPerformance = [];
+    var ob = new PerformanceObserver(function(e) {
+      window.__bufferedPerformance.push.apply(window.__bufferedPerformance,e.getEntries());
+    });
+    ob.observe({entryTypes:['paint']});
+  }
+
+  window.__bufferedErrors = [];
+  window.onerror = function(message, url, line, column, error) {
+    window.__bufferedErrors.push({
+      message: message,
+      url: url,
+      line: line,
+      column: column,
+      error: error
+    });
+    return false;
+  };
+  window.__initialData = {
+    pending: true,
+    waiting: []
+  };
+  function asyncFetchSharedData(extra) {
+    var sharedDataReq = new XMLHttpRequest();
+    sharedDataReq.onreadystatechange = function() {
+          if (sharedDataReq.readyState === 4) {
+            if(sharedDataReq.status === 200){
+              var sharedData = JSON.parse(sharedDataReq.responseText);
+              window.__initialDataLoaded(sharedData, extra);
+            }
+          }
+        }
+    sharedDataReq.open('GET', '/data/shared_data/', true);
+    sharedDataReq.send(null);
+  }
+  window.__initialDataLoadFromCache = function(sharedData) {
+    var extra = { entry_data: sharedData.entry_data };
+    if (!localStorage) {
+      return asyncFetchSharedData(extra);
+    }
+    var cachedSharedData = localStorage.getItem("ig_sdc");
+    if (!cachedSharedData) {
+      return asyncFetchSharedData(extra);
+    }
+    try {
+      cachedSharedData = JSON.parse(cachedSharedData);
+    } catch (ex) {
+      return asyncFetchSharedData(extra);
+    }
+    if (cachedSharedData.expiry < Date.now() || cachedSharedData.schemaVersion != sharedData.cache_schema_version) {
+      return asyncFetchSharedData(extra);
+    }
+    window.__initialDataLoaded(sharedData, cachedSharedData.data);
+  };
+
+  function notifyLoaded(item, data) {
+    item.pending = false;
+    item.data = data;
+    for (var i = 0;i < item.waiting.length; ++i) {
+      item.waiting[i].resolve(item.data);
+    }
+    item.waiting = [];
+  }
+  function notifyError(item, msg) {
+    item.pending = false;
+    item.error = new Error(msg);
+    for (var i = 0;i < item.waiting.length; ++i) {
+      item.waiting[i].reject(item.error);
+    }
+    item.waiting = [];
+  }
+  window.__initialDataLoaded = function(initialData, extraData) {
+    for (var key in extraData) {
+      initialData[key] = extraData[key];
+    }
+    notifyLoaded(window.__initialData, initialData);
+  };
+  window.__initialDataError = function(msg) {
+    notifyError(window.__initialData, msg);
+  };
+  window.__additionalData = {};
+  window.__pendingAdditionalData = function(paths) {
+    for (var i = 0;i < paths.length; ++i) {
+      window.__additionalData[paths[i]] = {
+        pending: true,
+        waiting: []
+      };
+    }
+  };
+  window.__additionalDataLoaded = function(path, data) {
+    if (path in window.__additionalData) {
+      notifyLoaded(window.__additionalData[path], data);
+    } else {
+      console.error('Unexpected additional data loaded "' + path + '"');
+    }
+  };
+  window.__additionalDataError = function(path, msg) {
+    if (path in window.__additionalData) {
+      notifyError(window.__additionalData[path], msg);
+    } else {
+      console.error('Unexpected additional data encountered an error "' + path + '": ' + msg);
+    }
+  };
+  
+})();
+</script><script type="text/javascript">
+
+/*
+ Copyright 2018 Google Inc. All Rights Reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+
+(function(){function g(a,c){b||(b=a,f=c,h.forEach(function(a){removeEventListener(a,l,e)}),m())}function m(){b&&f&&0<d.length&&(d.forEach(function(a){a(b,f)}),d=[])}function n(a,c){function k(){g(a,c);d()}function b(){d()}function d(){removeEventListener("pointerup",k,e);removeEventListener("pointercancel",b,e)}addEventListener("pointerup",k,e);addEventListener("pointercancel",b,e)}function l(a){if(a.cancelable){var c=performance.now(),b=a.timeStamp;b>c&&(c=+new Date);c-=b;"pointerdown"==a.type?n(c,
+a):g(c,a)}}var e={passive:!0,capture:!0},h=["click","mousedown","keydown","touchstart","pointerdown"],b,f,d=[];h.forEach(function(a){addEventListener(a,l,e)});window.perfMetrics=window.perfMetrics||{};window.perfMetrics.onFirstInputDelay=function(a){d.push(a);m()}})();
+</script>
+    
+                <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/static/images/ico/apple-touch-icon-76x76-precomposed.png/4272e394f5ad.png">
+                <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static/images/ico/apple-touch-icon-120x120-precomposed.png/02ba5abf9861.png">
+                <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static/images/ico/apple-touch-icon-152x152-precomposed.png/419a6f9c7454.png">
+                <link rel="apple-touch-icon-precomposed" sizes="167x167" href="/static/images/ico/apple-touch-icon-167x167-precomposed.png/a24e58112f06.png">
+                <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/static/images/ico/apple-touch-icon-180x180-precomposed.png/85a358fb3b7d.png">
+                
+                    <link rel="icon" sizes="192x192" href="/static/images/ico/favicon-192.png/68d99ba29cc8.png">
+                
+            
+            
+                    <link rel="mask-icon" href="/static/images/ico/favicon.svg/fc72dd4bfde8.svg" color="#262626">
+                  
+                  <link rel="shortcut icon" type="image/x-icon" href="/static/images/ico/favicon.ico/36b3ee2d91ed.ico">
+                
+            
+            
+            
+    
+        
+            <link rel="alternate" href="android-app://com.instagram.android/https/instagram.com/_u/vzrosloe.video/" />
+        
+        
+            <meta property="al:ios:app_name" content="Instagram" />
+            <meta property="al:ios:app_store_id" content="389801252" />
+            <meta property="al:ios:url" content="instagram://user?username=vzrosloe.video" />
+            <meta property="al:android:app_name" content="Instagram" />
+            <meta property="al:android:package" content="com.instagram.android" />
+            <meta property="al:android:url" content="https://www.instagram.com/_u/vzrosloe.video/" />
+        
+        <link rel="canonical" href="https://www.instagram.com/vzrosloe.video/" />
+        <meta content="25.7k Followers, 2,977 Following, 507 Posts - See Instagram photos and videos from @vzrosloe.video" name="description" />
+        
+            <meta property="og:type" content="profile" />
+            <meta property="og:image" content="https://scontent-arn2-1.cdninstagram.com/vp/5b647c927764b0014db4af5cdc83123b/5D0287C2/t51.2885-19/s150x150/34731395_1809846735789804_5697304848635002880_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com" />
+            <meta property="og:title" content="@vzrosloe.video • Instagram photos and videos" />
+            <meta property="og:description" content="25.7k Followers, 2,977 Following, 507 Posts - See Instagram photos and videos from @vzrosloe.video" />
+            <meta property="og:url" content="https://www.instagram.com/vzrosloe.video/" />
+        
+    
+
+    <link rel="alternate" href="https://www.instagram.com/vzrosloe.video/" hreflang="x-default" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=en" hreflang="en" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=fr" hreflang="fr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=it" hreflang="it" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=de" hreflang="de" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es" hreflang="es" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=zh-cn" hreflang="zh-cn" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=zh-tw" hreflang="zh-tw" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ja" hreflang="ja" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ko" hreflang="ko" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=pt" hreflang="pt" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=pt-br" hreflang="pt-br" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=af" hreflang="af" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=cs" hreflang="cs" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=da" hreflang="da" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=el" hreflang="el" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=fi" hreflang="fi" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=hr" hreflang="hr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=hu" hreflang="hu" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=id" hreflang="id" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ms" hreflang="ms" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=nb" hreflang="nb" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=nl" hreflang="nl" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=pl" hreflang="pl" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ru" hreflang="ru" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=sk" hreflang="sk" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=sv" hreflang="sv" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=th" hreflang="th" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=tl" hreflang="tl" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=tr" hreflang="tr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=hi" hreflang="hi" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=bn" hreflang="bn" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=gu" hreflang="gu" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=kn" hreflang="kn" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ml" hreflang="ml" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=mr" hreflang="mr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=pa" hreflang="pa" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ta" hreflang="ta" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=te" hreflang="te" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ne" hreflang="ne" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=si" hreflang="si" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ur" hreflang="ur" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=vi" hreflang="vi" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=bg" hreflang="bg" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=fr-ca" hreflang="fr-ca" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=ro" hreflang="ro" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=sr" hreflang="sr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=uk" hreflang="uk" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=zh-hk" hreflang="zh-hk" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-pr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-bo" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-mx" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-py" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-co" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-pe" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-ar" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-cr" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-do" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-ec" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-ni" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-pa" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-cu" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-uy" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-sv" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-hn" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-cl" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-ve" />
+<link rel="alternate" href="https://www.instagram.com/vzrosloe.video/?hl=es-la" hreflang="es-gt" />
+</head>
+    <body class="">
+        
+    <span id="react-root"><svg width="50" height="50" viewBox="0 0 50 50" style="position:absolute;top:50%;left:50%;margin:-25px 0 0 -25px;fill:#c7c7c7"><path d="M25 1c-6.52 0-7.34.03-9.9.14-2.55.12-4.3.53-5.82 1.12a11.76 11.76 0 0 0-4.25 2.77 11.76 11.76 0 0 0-2.77 4.25c-.6 1.52-1 3.27-1.12 5.82C1.03 17.66 1 18.48 1 25c0 6.5.03 7.33.14 9.88.12 2.56.53 4.3 1.12 5.83a11.76 11.76 0 0 0 2.77 4.25 11.76 11.76 0 0 0 4.25 2.77c1.52.59 3.27 1 5.82 1.11 2.56.12 3.38.14 9.9.14 6.5 0 7.33-.02 9.88-.14 2.56-.12 4.3-.52 5.83-1.11a11.76 11.76 0 0 0 4.25-2.77 11.76 11.76 0 0 0 2.77-4.25c.59-1.53 1-3.27 1.11-5.83.12-2.55.14-3.37.14-9.89 0-6.51-.02-7.33-.14-9.89-.12-2.55-.52-4.3-1.11-5.82a11.76 11.76 0 0 0-2.77-4.25 11.76 11.76 0 0 0-4.25-2.77c-1.53-.6-3.27-1-5.83-1.12A170.2 170.2 0 0 0 25 1zm0 4.32c6.4 0 7.16.03 9.69.14 2.34.11 3.6.5 4.45.83 1.12.43 1.92.95 2.76 1.8a7.43 7.43 0 0 1 1.8 2.75c.32.85.72 2.12.82 4.46.12 2.53.14 3.29.14 9.7 0 6.4-.02 7.16-.14 9.69-.1 2.34-.5 3.6-.82 4.45a7.43 7.43 0 0 1-1.8 2.76 7.43 7.43 0 0 1-2.76 1.8c-.84.32-2.11.72-4.45.82-2.53.12-3.3.14-9.7.14-6.4 0-7.16-.02-9.7-.14-2.33-.1-3.6-.5-4.45-.82a7.43 7.43 0 0 1-2.76-1.8 7.43 7.43 0 0 1-1.8-2.76c-.32-.84-.71-2.11-.82-4.45a166.5 166.5 0 0 1-.14-9.7c0-6.4.03-7.16.14-9.7.11-2.33.5-3.6.83-4.45a7.43 7.43 0 0 1 1.8-2.76 7.43 7.43 0 0 1 2.75-1.8c.85-.32 2.12-.71 4.46-.82 2.53-.11 3.29-.14 9.7-.14zm0 7.35a12.32 12.32 0 1 0 0 24.64 12.32 12.32 0 0 0 0-24.64zM25 33a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm15.68-20.8a2.88 2.88 0 1 0-5.76 0 2.88 2.88 0 0 0 5.76 0z"/></svg></span>
+
+        
+
+
+        
+            <script type="text/javascript">window._sharedData = {"config":{"csrf_token":"WKO2s10DA9h8o0aouhRsGP3RsKyTQkBg","viewer":null,"viewerId":null},"supports_es6":false,"country_code":"RU","language_code":"en","locale":"en_US","entry_data":{"ProfilePage":[{"logging_page_id":"profilePage_8121667352","show_suggested_profiles":false,"graphql":{"user":{"biography":"\u041b\u0443\u0447\u0448\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430 \u043f\u043e \u043c\u043d\u0435\u043d\u0438\u044e \u0410\u0439\u0436\u0430\u043d \u0411\u0430\u0439\u0437\u0430\u043a\u043e\u0432\u043e\u0439\ud83d\udc4c\ud83c\udffc\u0442\u0435\u043f\u0435\u0440\u044c \u0442\u043e\u043b\u044c\u043a\u043e \u0440\u0430\u0441\u0441\u043a\u0430\u0436\u0438\u0442\u0435 \u0435\u0439 \u043e \u043d\u0435\u0439)\u043f\u043e \u043f\u043e\u0432\u043e\u0434\u0443 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u0447\u0435\u0441\u0442\u0432\u0430, \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u0439,\u0444\u043e\u0442\u043e/\u0432\u0438\u0434\u0435\u043e,\u0432 \u0434\u0430\u0439\u0440\u0435\u043a\u0442\ud83d\udce9","blocked_by_viewer":false,"country_block":false,"external_url":"http://tellonym.me/vzrosloe","external_url_linkshimmed":"https://l.instagram.com/?u=http%3A%2F%2Ftellonym.me%2Fvzrosloe\u0026e=ATMkajjSebwHHAaQ_sM03Te5g8hGUl5irevdHD3gZZK73ngwO0fPgcqep5Gp0MvZpNA5-i50","edge_followed_by":{"count":25747},"followed_by_viewer":false,"edge_follow":{"count":2977},"follows_viewer":false,"full_name":"vzrosloe.video","has_channel":false,"has_blocked_viewer":false,"highlight_reel_count":0,"has_requested_viewer":false,"id":"8121667352","is_business_account":false,"is_joined_recently":false,"business_category_name":null,"business_email":null,"business_phone_number":null,"business_address_json":null,"is_private":true,"is_verified":false,"edge_mutual_followed_by":{"count":0,"edges":[]},"profile_pic_url":"https://scontent-arn2-1.cdninstagram.com/vp/5b647c927764b0014db4af5cdc83123b/5D0287C2/t51.2885-19/s150x150/34731395_1809846735789804_5697304848635002880_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com","profile_pic_url_hd":"https://scontent-arn2-1.cdninstagram.com/vp/1d2596fa6add339be3cf73609b0070b0/5D0F14BA/t51.2885-19/s320x320/34731395_1809846735789804_5697304848635002880_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com","requested_by_viewer":false,"username":"vzrosloe.video","connected_fb_page":null,"edge_felix_video_timeline":{"count":0,"page_info":{"has_next_page":false,"end_cursor":null},"edges":[]},"edge_owner_to_timeline_media":{"count":507,"page_info":{"has_next_page":true,"end_cursor":"QVFDMUdGUGh5ZlBKZm5UdXY5Ynd4MTRkdU9oamxZWXl4V3lieW1zeFJxTHR1MG9QUDRGc3pFNEl6dVdwMGI5LW5Nc21PTW9IWDFPa09zbFFPMzl4T2hKQw=="},"edges":[]},"edge_saved_media":{"count":0,"page_info":{"has_next_page":false,"end_cursor":null},"edges":[]},"edge_media_collections":{"count":0,"page_info":{"has_next_page":false,"end_cursor":null},"edges":[]}}},"felix_onboarding_video_resources":{"mp4":"/static/videos/felix-onboarding/onboardingVideo.mp4/9d16838ca7f9.mp4","poster":"/static/images/felix-onboarding/onboardingVideoPoster.png/8fdba7cf2120.png"},"show_follow_dialog":false}]},"gatekeepers":{"sw":true,"seo":true,"seoht":true,"phone_qp":true,"nt":true,"rp":true,"oba":true},"knobs":{"acct:ntb":0,"cb":0,"captcha":0,"fr":0},"qe":{"sdc":{"g":"","p":{}},"fsu_count":{"g":"","p":{}},"iab":{"g":"","p":{}},"app_upsell":{"g":"","p":{}},"igl_app_upsell":{"g":"","p":{}},"profile_header_name":{"g":"","p":{}},"bc3l":{"g":"","p":{}},"direct_conversation_reporting":{"g":"","p":{}},"frx_reporting":{"g":"","p":{}},"general_reporting":{"g":"","p":{}},"reporting":{"g":"","p":{}},"acc_recovery_link":{"g":"","p":{}},"notif":{"g":"","p":{}},"mobile_stories_doodling":{"g":"","p":{}},"show_copy_link":{"g":"","p":{}},"p_edit":{"g":"","p":{}},"404_as_react":{"g":"","p":{}},"acc_recovery":{"g":"","p":{}},"bundle":{"g":"","p":{}},"collections":{"g":"","p":{}},"dir":{"g":"","p":{}},"comment_ta":{"g":"","p":{}},"su":{"g":"","p":{}},"ebd_ul":{"g":"","p":{}},"ebdsim_li":{"g":"","p":{}},"ebdsim_lo":{"g":"","p":{}},"empty_feed":{"g":"","p":{}},"appsell":{"g":"","p":{}},"heart_tab":{"g":"","p":{}},"follow_button":{"g":"","p":{}},"log_cont":{"g":"","p":{}},"msisdn":{"g":"","p":{}},"onetaplogin":{"g":"control","p":{"after_login":"true","storage_version":"one_tap_storage_version"}},"onetap":{"g":"","p":{}},"profile_tabs":{"g":"","p":{}},"multireg_iter":{"g":"control_11_29","p":{"has_prioritized_phone":"false"}},"reg_vp":{"g":"","p":{}},"report_media":{"g":"","p":{}},"report_profile":{"g":"","p":{}},"sidecar_swipe":{"g":"","p":{}},"su_universe":{"g":"","p":{}},"stale":{"g":"","p":{}},"tp_pblshr":{"g":"","p":{}},"video":{"g":"","p":{}},"felix":{"g":"","p":{}},"felix_clear_fb_cookie":{"g":"","p":{}},"felix_creation_duration_limits":{"g":"","p":{}},"felix_creation_enabled":{"g":"","p":{}},"felix_creation_fb_crossposting":{"g":"","p":{}},"felix_creation_fb_crossposting_v2":{"g":"","p":{}},"felix_creation_validation":{"g":"","p":{}},"felix_creation_video_upload":{"g":"","p":{}},"felix_early_onboarding":{"g":"","p":{}},"profile_enhance_li":{"g":"","p":{}},"profile_enhance_lo":{"g":"control","p":{"has_feed":"false"}},"comment_enhance":{"g":"","p":{}},"mweb_topical_explore":{"g":"","p":{}},"follow_all_fb":{"g":"","p":{}},"lite_direct_upsell":{"g":"","p":{}},"web_loggedout_noop":{"g":"","p":{}},"a2hs_heuristic_uc":{"g":"","p":{}},"a2hs_heuristic_non_uc":{"g":"","p":{}},"web_hashtag":{"g":"","p":{}},"web_hashtag_logged_out":{"g":"","p":{}},"header_scroll":{"g":"","p":{}},"web_lo_follow":{"g":"","p":{}},"web_share":{"g":"","p":{}},"lite_rating":{"g":"","p":{}},"web_embeds_share":{"g":"","p":{}},"web_share_lo":{"g":"","p":{}},"web_embeds_logged_out":{"g":"control","p":{"video_show_watch_on_ig":"false"}},"web_datasaver_mode":{"g":"","p":{}},"lite_datasaver_mode":{"g":"","p":{}},"post_options":{"g":"","p":{}},"igtv_creation_feed_preview":{"g":"","p":{}},"igtv_public_viewing":{"g":"","p":{}},"caching":{"g":"","p":{}},"nux":{"g":"","p":{}},"iglmsr":{"g":"multi_step_reg","p":{"has_multi_step_registration":"true","has_prefill":"false"}},"igwsvl":{"g":"","p":{}},"iglcp":{"g":"has_prefill","p":{"has_login_prefill":"true"}},"lite_story_video_upload":{"g":"","p":{}},"iglscioi":{"g":"","p":{}},"ws2":{"g":"","p":{}},"wpn":{"g":"","p":{}},"hc":{"g":"","p":{}},"lite_user_tag_creation":{"g":"","p":{}},"iglcius":{"g":"","p":{}},"wfvu":{"g":"","p":{}},"iglsa":{"g":"","p":{}},"igwllre":{"g":"","p":{}},"wss2":{"g":"","p":{}},"igwlspe":{"g":"","p":{}},"creatives_assets":{"g":"","p":{}},"qex":{"g":"","p":{}},"lqe":{"g":"","p":{}},"1":{"p":{"0":true},"qex":true}},"hostname":"www.instagram.com","deployment_stage":"c2","platform":"web","rhx_gis":"63cb628fba29b4fdc837565c8107afd6","nonce":"z6WeIfIW8Zr3LBLKdC5V+g==","mid_pct":10.62926,"server_checks":{},"zero_data":{},"probably_has_app":false,"cache_schema_version":1,"to_cache":{},"rollout_hash":"f72933d5ac45-hot","bundle_variant":"metro","is_canary":false};</script>
+<script type="text/javascript">window.__initialDataLoaded(window._sharedData);</script>
+<script type="text/javascript">var __DEV__=false,__BUNDLE_START_TIME__=this.nativePerformanceNow?nativePerformanceNow():Date.now(),process=this.process||{};process.env=process.env||{};process.env.NODE_ENV="production";!(function(r){"use strict";function e(){return f="number"==typeof __NUM_MODULES__?Array(0|__NUM_MODULES__):Object.create(null)}function t(r){var e=r,t=f[e];return t&&t.isInitialized?t.publicModule.exports:o(e,t)}function n(r){var e=r;if(f[e]&&f[e].importedDefault!==c)return f[e].importedDefault;var n=t(e),i=n&&n.__esModule?n.default:n;return f[e].importedDefault=i}function i(r){var e=r;if(f[e]&&f[e].importedAll!==c)return f[e].importedAll;var n,i=t(e);if(i&&i.__esModule)n=i;else{if(n={},i)for(var o in i)p.call(i,o)&&(n[o]=i[o]);n.default=i}return f[e].importedAll=n}function o(e,t){if(!s&&r.ErrorUtils){s=!0;var n;try{n=l(e,t)}catch(e){r.ErrorUtils.reportFatalError(e)}return s=!1,n}return l(e,t)}function u(r){return{segmentId:r>>>_,localId:r&v}}function l(e,o){!o&&r.__defineModule&&(r.__defineModule(e),o=f[e]);var l=r.nativeRequire;if(!o&&l){var c=u(e),p=c.segmentId;l(c.localId,p),o=f[e]}if(!o)throw a(e);if(o.hasError)throw d(e,o.error);o.isInitialized=!0;var s=o,_=s.factory,v=s.dependencyMap;try{var M=o.publicModule;if(M.id=e,h.length>0)for(var m=0;m<h.length;++m)h[m].cb(e,M);return _(r,t,n,i,M,M.exports,v),o.factory=void 0,o.dependencyMap=void 0,M.exports}catch(r){throw o.hasError=!0,o.error=r,o.isInitialized=!1,o.publicModule.exports=void 0,r}}function a(r){var e='Requiring unknown module "'+r+'".';return Error(e)}function d(r,e){var t=r;return Error('Requiring module "'+t+'", which threw an exception: '+e)}r.__r=t,r.__d=function(r,e,t){null==f[e]&&(f[e]={dependencyMap:t,factory:r,hasError:!1,importedAll:c,importedDefault:c,isInitialized:!1,publicModule:{exports:{}}})},r.__c=e;var f=e(),c={},p={}.hasOwnProperty;t.importDefault=n,t.importAll=i;var s=!1,_=16,v=65535;t.unpackModuleId=u,t.packModuleId=function(r){return(r.segmentId<<_)+r.localId};var h=[];t.registerHook=function(r){var e={cb:r};return h.push(e),{release:function(){for(var r=0;r<h.length;++r)if(h[r]===e){h.splice(r,1);break}}}}})('undefined'!=typeof global?global:'undefined'!=typeof window?window:this);
+__s={"15":"/static/bundles/metro/NotificationLandingPage.js/a342d2d1ebd6.js","16":"/static/bundles/metro/Challenge.js/dfcfcea0cdb9.js","17":"/static/bundles/metro/Consumer.js/2dee4868e051.js","19":"/static/bundles/metro/DebugInfoNub.js/60e7bdbdb2b4.js","20":"/static/bundles/metro/NametagLandingPage.js/f0ca816a0c8e.js","21":"/static/bundles/metro/OneTapUpsell.js/d36ce3b313d9.js","22":"/static/bundles/metro/MobileDirectPage.js/5230d943a7f6.js","23":"/static/bundles/metro/OAuthPermissionsPage.js/e51c8ae5ee15.js","24":"/static/bundles/metro/IGTVVideoUploadPageContainer.js/9036a2dec60c.js","25":"/static/bundles/metro/IGTVVideoDraftsPageContainer.js/5a60ec756d67.js","26":"/static/bundles/metro/HttpErrorPage.js/8f78ae2daac2.js","27":"/static/bundles/metro/ProfilePageContainer.js/6c4bf93684e3.js","28":"/static/bundles/metro/PhoneConfirmPage.js/d99861417bef.js","29":"/static/bundles/metro/TagPageContainer.js/a2c88c5e3b1a.js","30":"/static/bundles/metro/DesktopStoriesPage.js/b66d5dfd8d2a.js","31":"/static/bundles/metro/MobileStoriesPage.js/573b36f0c394.js","32":"/static/bundles/metro/DesktopStoriesLoginPage.js/01e2c83acca8.js","33":"/static/bundles/metro/MobileStoriesLoginPage.js/fdd9305c5089.js","34":"/static/bundles/metro/SuggestedDirectoryLandingPage.js/597a3e755d9e.js","35":"/static/bundles/metro/HashtagsDirectoryLandingPage.js/85c6e4e74fb8.js","36":"/static/bundles/metro/ProfilesDirectoryLandingPage.js/c96b09052842.js","37":"/static/bundles/metro/PostPageContainer.js/d6adac3dbe84.js","38":"/static/bundles/metro/MediaChainingPageContainer.js/72cc468f8f76.js","39":"/static/bundles/metro/MobileAllCommentsPage.js/10c8078b852a.js","40":"/static/bundles/metro/ResetPasswordPageContainer.js/2f93ee3edf01.js","41":"/static/bundles/metro/LoginAndSignupPage.js/a397c6ad1326.js","42":"/static/bundles/metro/LocationsDirectoryLandingPage.js/d92df012bb40.js","43":"/static/bundles/metro/LocationPageContainer.js/d0c4b3ffb64e.js","44":"/static/bundles/metro/LocationsDirectoryCityPage.js/736c25e2055f.js","45":"/static/bundles/metro/LocationsDirectoryCountryPage.js/b52307c6790c.js","46":"/static/bundles/metro/LandingPage.js/f03fe8b63830.js","47":"/static/bundles/metro/SimilarAccountsPage.js/9fd7dd0eb0e7.js","48":"/static/bundles/metro/SimilarAccountsModal.js/3afc581790ae.js","49":"/static/bundles/metro/FollowListPage.js/13471cedc783.js","50":"/static/bundles/metro/FollowListModal.js/d374b892c69a.js","51":"/static/bundles/metro/FeedPageContainer.js/9cb6ea974ec7.js","52":"/static/bundles/metro/MultiStepSignupPage.js/fc3e320e42c6.js","53":"/static/bundles/metro/NewUserInterstitial.js/1c281febf33c.js","54":"/static/bundles/metro/FBSignupPage.js/0ed9aff7f27b.js","55":"/static/bundles/metro/EmailConfirmationPage.js/3655d9509ec0.js","56":"/static/bundles/metro/UserCollectionMediaPageContainer.js/bbac56375b81.js","57":"/static/bundles/metro/UserCollectionsPageContainer.js/80e4730a4deb.js","58":"/static/bundles/metro/DiscoverEmbedsPageContainer.js/5729f5474286.js","59":"/static/bundles/metro/DiscoverPeoplePageContainer.js/06c131f2258e.js","60":"/static/bundles/metro/DiscoverMediaPageContainer.js/5dd9bd38ec04.js","61":"/static/bundles/metro/CommentLikedByListContainer.js/f7bafc67ba1b.js","62":"/static/bundles/metro/LikedByListContainer.js/b526a8932f5a.js","63":"/static/bundles/metro/DirectNewThread.js/f8740b86d4f6.js","64":"/static/bundles/metro/ExploreMediaPageContainer.js/90f7b236bad7.js","65":"/static/bundles/metro/StoryCreationPage.js/1d542b7550dc.js","66":"/static/bundles/metro/CreationModules.js/5b985b431e22.js","67":"/static/bundles/metro/ContactInvitesOptOutStatusPage.js/a325734c3a87.js","68":"/static/bundles/metro/NewTermsConfirmPage.js/c418b5a9110d.js","69":"/static/bundles/metro/TermsUnblockPage.js/369503c5e28a.js","70":"/static/bundles/metro/TermsAcceptPage.js/247666428e56.js","71":"/static/bundles/metro/ParentalConsentNotParentPage.js/4f70d97d9a0f.js","72":"/static/bundles/metro/ParentalConsentPage.js/0831de728795.js","73":"/static/bundles/metro/ContactInvitesOptOutPage.js/9eff4f55b166.js","74":"/static/bundles/metro/AccountRecoveryLandingPage.js/e2a6ccecead6.js","75":"/static/bundles/metro/CheckpointUnderageAppealPage.js/8da42f050c2b.js","76":"/static/bundles/metro/DataDownloadRequestConfirmPage.js/914357b94b55.js","77":"/static/bundles/metro/DataDownloadRequestPage.js/298a6b9a5e4e.js","78":"/static/bundles/metro/DataControlsSupportPage.js/8561981bffec.js","79":"/static/bundles/metro/AndroidBetaPrivacyBugPage.js/d375878135b8.js","80":"/static/bundles/metro/BlockedAccountsBugPage.js/e33510ba6ed0.js","81":"/static/bundles/metro/PublicAccountNotMadePrivateBugPage.js/2bf42bba70ca.js","82":"/static/bundles/metro/PrivateAccountMadePublicBugPage.js/56cace55942b.js","83":"/static/bundles/metro/PlaintextPasswordBugPage.js/cf65663808e0.js","84":"/static/bundles/metro/AccountPrivacyBugPage.js/4379136ee779.js","85":"/static/bundles/metro/AccessToolViewAllPage.js/f5446a84c812.js","86":"/static/bundles/metro/AccessToolPage.js/f6cd57302d26.js","87":"/static/bundles/metro/ContactHistoryPage.js/e3fe16c1071d.js","88":"/static/bundles/metro/SettingsModules.js/79b4ce663195.js","89":"/static/bundles/metro/CameraPage.js/77f0b90282a5.js","90":"/static/bundles/metro/AdsSettingsPage.js/9f0e20cc7c66.js","91":"/static/bundles/metro/ActivityFeedPage.js/153c879758fa.js","92":"/static/bundles/metro/DirectMQTT.js/efa49a77b3ba.js","97":"/static/bundles/metro/EmbedRich.js/4902d149d38a.js","98":"/static/bundles/metro/EmbedAsyncLogger.js/44aad4bd29bd.js"}</script>
+<script type="text/javascript" src="/static/bundles/metro/Polyfills.js/71884dc48b47.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/bundles/metro/Vendor.js/b9b00b19edc2.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/bundles/metro/en_US.js/d016bc4ccc55.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/bundles/metro/ConsumerCommons.js/041cb9b4d0a6.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/bundles/metro/Consumer.js/2dee4868e051.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/bundles/metro/ProfilePageContainer.js/6c4bf93684e3.js" crossorigin="anonymous" charset="utf-8" async=""></script>
+
+            
+        
+
+        <script type="text/javascript">
+(function(){
+  function normalizeError(err) {
+    var errorInfo = err.error || {};
+    var getConfigProp = function(propName, defaultValueIfNotTruthy) {
+      var propValue = window._sharedData && window._sharedData[propName];
+      return propValue ? propValue : defaultValueIfNotTruthy;
+    };
+    return {
+      line: err.line || errorInfo.message || 0,
+      column: err.column || 0,
+      name: 'InitError',
+      message: err.message || errorInfo.message || '',
+      script: errorInfo.script || '',
+      stack: errorInfo.stackTrace || errorInfo.stack || '',
+      timestamp: Date.now(),
+      ref: window.location.href,
+      deployment_stage: getConfigProp('deployment_stage', ''),
+      is_canary: getConfigProp('is_canary', false),
+      rollout_hash: getConfigProp('rollout_hash', ''),
+      is_prerelease: window.__PRERELEASE__ || false,
+      bundle_variant: getConfigProp('bundle_variant', null),
+      request_url: err.url || window.location.href,
+      response_status_code: errorInfo.statusCode || 0
+    }
+  }
+  window.addEventListener('load', function(){
+    if (window.__bufferedErrors && window.__bufferedErrors.length) {
+      if (window.caches && window.caches.keys && window.caches.delete) {
+        window.caches.keys().then(function(keys) {
+          keys.forEach(function(key) {
+            window.caches.delete(key)
+          })
+        })
+      }
+      window.__bufferedErrors.map(function(error) {
+        return normalizeError(error)
+      }).forEach(function(normalizedError) {
+        var request = new XMLHttpRequest();
+        request.open('POST', '/client_error/', true);
+        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        request.send(JSON.stringify(normalizedError));
+      })
+    }
+  })
+}());
+</script>
+    </body>
+</html>
