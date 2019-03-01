@@ -72,6 +72,17 @@ class InstagramTestCase(unittest.TestCase):
         self.assertEqual(len(insta.get_text()), 940)
 
     @patch('bot.instagram.urlopen')
+    def test_text_empty(self, mock):
+        with open('tests/instagram/text_empty.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        insta = Instagram.from_url('https://www.instagram.com/p/BucgqYLgoaN/')
+
+        self.assertEqual(insta.get_text(), None)
+
+    @patch('bot.instagram.urlopen')
     def test_private_account(self, mock):
         with open('tests/instagram/private_account.html_') as fd:
             m = MagicMock()

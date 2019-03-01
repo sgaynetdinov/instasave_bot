@@ -70,7 +70,10 @@ class Instagram:
         return image_url_items
 
     def get_text(self):
-        return self._content['edge_media_to_caption']['edges'][0]['node']['text']
+        try:
+            return self._content['edge_media_to_caption']['edges'][0]['node']['text']
+        except IndexError:
+            return None
 
     @property
     def _content(self):
