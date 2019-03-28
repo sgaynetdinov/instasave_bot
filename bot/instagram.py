@@ -39,18 +39,15 @@ class Instagram:
             if err.code == 404:
                 raise Instagram404Error
 
-        start = '<script type="text/javascript">window._sharedData = {'
-        stop = '};</script>'
-
         response_text = response_text.decode()
+	
+        start = '<script type="text/javascript">window._sharedData = '
+        stop = ';</script>'
 
-        start_position = response_text.find(start)
+        start_position = response_text.find(start) + len(start)
         stop_position = response_text.find(stop)
 
-        start_slice = start_position + len(start)-1
-        stop_slice = stop_position + 1
-
-        raw_json = response_text[start_slice:stop_slice]
+        raw_json = response_text[start_position:stop_position]
         instagram_json = json.loads(raw_json)
 
         if cls._is_private(instagram_json):
