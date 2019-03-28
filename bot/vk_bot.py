@@ -37,7 +37,7 @@ class Bot:
             group.send_messages(user_id, message='Отправьте пожалуйста ссылку на фото из Instagram')
         else:
             text = instagram.get_text()
-            if text is not None:
+            if text:
                 group.send_messages(user_id, message=text)
 
             for url in instagram.get_photos_url():
