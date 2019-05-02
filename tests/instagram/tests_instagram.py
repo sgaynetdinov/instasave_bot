@@ -80,7 +80,7 @@ class InstagramTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/p/BucgqYLgoaN/')
 
-        self.assertEqual(insta.get_text(), None)
+        self.assertEqual(insta.get_text(), '')
 
     @patch('bot.instagram.urlopen')
     def test_private_account(self, mock):
