@@ -59,8 +59,11 @@ class Instagram:
         image_url_items = []
 
         if 'edge_sidecar_to_children' in self._content:
-            display_url = (edge['node']['display_url'] for edge in self._content['edge_sidecar_to_children']['edges'])
-            image_url_items.extend(display_url)
+            node_items = (edge['node'] for edge in self._content['edge_sidecar_to_children']['edges'])
+            for node in node_items:
+                image_url_items.append(node['display_url'])
+                if node['is_video']:
+                    image_url_items.append(node['video_url'])
         else:
             image_url_items.append(self._content['display_url'])
             if self._content.get('video_url'):
