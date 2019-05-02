@@ -63,6 +63,8 @@ class Instagram:
             image_url_items.extend(display_url)
         else:
             image_url_items.append(self._content['display_url'])
+            if self._content.get('video_url'):
+                image_url_items.append(self._content['video_url'])
 
         return image_url_items
 

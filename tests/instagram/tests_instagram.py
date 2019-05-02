@@ -58,6 +58,19 @@ class InstagramTestCase(unittest.TestCase):
         insta = Instagram.from_url('https://www.instagram.com/p/BrG6aIGIm2V/')
         
         self.assertEqual(len(insta.get_photos_url()), 1)
+
+    @patch('bot.instagram.urlopen')
+    def test_get_video_url__single_video(self, mock):
+        with open('tests/instagram/single_video.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        insta = Instagram.from_url('https://www.instagram.com/p/Bw2tSDag5Sy/')
+        
+        self.assertEqual(len(insta.get_photos_url()), 2)
+        self.assertEqual(insta.get_photos_url()[0], 'https://instagram.com/n.jpg')
+        self.assertEqual(insta.get_photos_url()[1], 'https://scontent.cdninstagram.com/n.mp4')
  
     @patch('bot.instagram.urlopen')
     def test_get_text(self, mock):
