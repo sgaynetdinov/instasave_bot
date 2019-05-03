@@ -38,7 +38,7 @@ class InstagramTestCase(unittest.TestCase):
             Instagram.from_url(url)
 
     @patch('bot.instagram.urlopen')
-    def test_get_photos_url__multi_photo(self, mock):
+    def test_get_photos_and_video_url__multi_photo(self, mock):
         with open('tests/instagram/multi_photo.html_') as fd:
             m = MagicMock() 
             m.read.return_value = fd.read().encode()
@@ -46,10 +46,10 @@ class InstagramTestCase(unittest.TestCase):
         
         insta = Instagram.from_url('https://www.instagram.com/p/Bq70HOsg0PW/')
 
-        self.assertEqual(len(insta.get_photos_url()), 6)
+        self.assertEqual(len(insta.get_photos_and_video_url()), 6)
 
     @patch('bot.instagram.urlopen')
-    def test_get_photos_url__single_photo(self, mock):
+    def test_get_photos_and_video_url__single_photo(self, mock):
         with open('tests/instagram/single_photo.html_') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
@@ -57,7 +57,7 @@ class InstagramTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/p/BrG6aIGIm2V/')
         
-        self.assertEqual(len(insta.get_photos_url()), 1)
+        self.assertEqual(len(insta.get_photos_and_video_url()), 1)
 
     @patch('bot.instagram.urlopen')
     def test_get_video_url__single_video(self, mock):
@@ -68,9 +68,9 @@ class InstagramTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/p/Bw2tSDag5Sy/')
         
-        self.assertEqual(len(insta.get_photos_url()), 2)
-        self.assertEqual(insta.get_photos_url()[0], 'https://instagram.com/n.jpg')
-        self.assertEqual(insta.get_photos_url()[1], 'https://scontent.cdninstagram.com/n.mp4')
+        self.assertEqual(len(insta.get_photos_and_video_url()), 2)
+        self.assertEqual(insta.get_photos_and_video_url()[0], 'https://instagram.com/n.jpg')
+        self.assertEqual(insta.get_photos_and_video_url()[1], 'https://scontent.cdninstagram.com/n.mp4')
  
     @patch('bot.instagram.urlopen')
     def test_get_video_url__multi_video(self, mock):
@@ -81,13 +81,13 @@ class InstagramTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/p/BqsVmrthfF0/')
 
-        self.assertEqual(len(insta.get_photos_url()), 6)
-        self.assertEqual(insta.get_photos_url()[0], 'https://instagram.com/1.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
-        self.assertEqual(insta.get_photos_url()[1], 'https://scontent.cdninstagram.com/1.mp4?_nc_ht=scontent.cdninstagram.com')
-        self.assertEqual(insta.get_photos_url()[2], 'https://instagram.com/2.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
-        self.assertEqual(insta.get_photos_url()[3], 'https://scontent.cdninstagram.com/2.mp4?_nc_ht=scontent.cdninstagram.com')
-        self.assertEqual(insta.get_photos_url()[4], 'https://instagram.com/3.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
-        self.assertEqual(insta.get_photos_url()[5], 'https://scontent.cdninstagram.com/3.mp4?_nc_ht=scontent.cdninstagram.com')
+        self.assertEqual(len(insta.get_photos_and_video_url()), 6)
+        self.assertEqual(insta.get_photos_and_video_url()[0], 'https://instagram.com/1.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
+        self.assertEqual(insta.get_photos_and_video_url()[1], 'https://scontent.cdninstagram.com/1.mp4?_nc_ht=scontent.cdninstagram.com')
+        self.assertEqual(insta.get_photos_and_video_url()[2], 'https://instagram.com/2.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
+        self.assertEqual(insta.get_photos_and_video_url()[3], 'https://scontent.cdninstagram.com/2.mp4?_nc_ht=scontent.cdninstagram.com')
+        self.assertEqual(insta.get_photos_and_video_url()[4], 'https://instagram.com/3.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
+        self.assertEqual(insta.get_photos_and_video_url()[5], 'https://scontent.cdninstagram.com/3.mp4?_nc_ht=scontent.cdninstagram.com')
 
     @patch('bot.instagram.urlopen')
     def test_get_url__when_both_video_and_photo(self, mock):
@@ -98,10 +98,10 @@ class InstagramTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/p/BvHKqqxBfkf/')
 
-        self.assertEqual(len(insta.get_photos_url()), 3)
-        self.assertEqual(insta.get_photos_url()[0], 'https://instagram.fhel2-1.fna.fbcdn.net/1.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
-        self.assertEqual(insta.get_photos_url()[1], 'https://instagram.fhel2-1.fna.fbcdn.net/2.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
-        self.assertEqual(insta.get_photos_url()[2], 'https://scontent.cdninstagram.com/2.mp4?_nc_ht=scontent.cdninstagram.com')
+        self.assertEqual(len(insta.get_photos_and_video_url()), 3)
+        self.assertEqual(insta.get_photos_and_video_url()[0], 'https://instagram.fhel2-1.fna.fbcdn.net/1.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
+        self.assertEqual(insta.get_photos_and_video_url()[1], 'https://instagram.fhel2-1.fna.fbcdn.net/2.jpg?_nc_ht=instagram.fhel2-1.fna.fbcdn.net')
+        self.assertEqual(insta.get_photos_and_video_url()[2], 'https://scontent.cdninstagram.com/2.mp4?_nc_ht=scontent.cdninstagram.com')
  
     @patch('bot.instagram.urlopen')
     def test_get_text(self, mock):

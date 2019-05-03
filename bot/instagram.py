@@ -55,7 +55,7 @@ class Instagram:
 
         return cls(instagram_json)
 
-    def get_photos_url(self):
+    def get_photos_and_video_url(self):
         image_url_items = []
 
         if 'edge_sidecar_to_children' in self._content:
