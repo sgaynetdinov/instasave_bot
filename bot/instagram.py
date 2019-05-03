@@ -40,7 +40,7 @@ class Instagram:
                 raise Instagram404Error
 
         response_text = response_text.decode()
-	
+
         start = '<script type="text/javascript">window._sharedData = '
         stop = ';</script>'
 
