@@ -42,4 +42,7 @@ class Bot:
 
             for url in instagram.get_photos_and_video_url():
                 group.messages_set_typing(user_id)
-                group.send_messages(user_id, image_files=[urlopen(url)])
+                if '.mp4' in url:
+                    group.send_messages(user_id, message=url)
+                else:
+                    group.send_messages(user_id, image_files=[urlopen(url)])
