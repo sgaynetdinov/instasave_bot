@@ -13,4 +13,4 @@ gunicorn = "==19.7.1"
 py-vkontakte = "==5.66.0"
 
 [requires]
-python_version = "3.6.7"
+python_version = "3.6"
