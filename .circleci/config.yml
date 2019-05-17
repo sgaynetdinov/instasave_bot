@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~
     docker:
-      - image: circleci/python:3.6.7
+      - image: circleci/python:3.6.8
         environment:
           PIPENV_VENV_IN_PROJECT: true
     steps:
