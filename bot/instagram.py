@@ -19,9 +19,6 @@ class InstagramLinkError(InstagramError):
 
 
 class Instagram:
-    def __init__(self, instagram_json):
-        self.instagram_json = instagram_json
-
     @classmethod
     def _is_private(cls, instagram_json):
         if 'ProfilePage' not in instagram_json['entry_data']:
@@ -53,7 +50,19 @@ class Instagram:
         if cls._is_private(instagram_json):
             raise Instagram404Error
 
-        return cls(instagram_json)
+        return InstagramEdge(instagram_json)
+
+
+    @classmethod
+    def _is_instagram_link(cls, link: str):
+        url = urlsplit(link)
+        if url.netloc not in ["www.instagram.com", "instagram.com"]:
+            raise InstagramLinkError
+
+
+class InstagramEdge:
+    def __init__(self, instagram_json):
+        self.instagram_json = instagram_json
 
     def get_photos_and_video_url(self):
         image_url_items = []
@@ -81,8 +90,3 @@ class Instagram:
     def _content(self):
         return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
-    @classmethod
-    def _is_instagram_link(cls, link: str):
-        url = urlsplit(link)
-        if url.netloc not in ["www.instagram.com", "instagram.com"]:
-            raise InstagramLinkError
