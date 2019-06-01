@@ -47,3 +47,10 @@ class InstagramTestCase(unittest.TestCase):
         with self.assertRaises(Instagram404Error):
             Instagram.from_url('https://www.instagram.com/nasa/')
 
+    def test__is_instagam_edge(self):
+        url = 'https://www.instagram.com/p/Bq70HOsg0PW/' 
+        self.assertTrue(Instagram._is_instagram_edge(url))
+
+        url = 'https://www.instagram.com/p//' 
+        self.assertFalse(Instagram._is_instagram_edge(url))
+
