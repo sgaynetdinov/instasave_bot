@@ -64,6 +64,16 @@ class Instagram:
         return False
 
     @classmethod
+    def _is_instagram_account(cls, link: str) -> bool:
+        url = urlsplit(link)
+        path = url.path.split('/')
+
+        if len(path) == 3 and path[1] != '':
+            return True
+        
+        return False
+
+    @classmethod
     def _is_instagram_link(cls, link: str):
         url = urlsplit(link)
         if url.netloc not in ["www.instagram.com", "instagram.com"]:
