@@ -55,6 +55,8 @@ class Instagram:
         elif cls._is_instagram_account(instagram_url):
             return InstagramAccount(instagram_json)
 
+        return
+
     @classmethod
     def _is_instagram_edge(cls, link: str) -> bool:
         url = urlsplit(link)
@@ -62,7 +64,7 @@ class Instagram:
 
         if len(path) == 4 and path[1] == 'p' and path[2] != '':
             return True
-        
+
         return False
 
     @classmethod
@@ -72,7 +74,7 @@ class Instagram:
 
         if len(path) == 3 and path[1] != '':
             return True
-        
+
         return False
 
     @classmethod
@@ -126,4 +128,3 @@ class InstagramAccount:
 
     def get_text(self) -> str:
         return self._content['biography']
-
