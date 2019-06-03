@@ -133,14 +133,21 @@ class InstagramAccount:
         except KeyError:
             return ''
 
+    @property
+    def _url(self):
+        try:
+            return '\n' + self._content['external_url']
+        except KeyError:
+            return ''
+
     def get_photos_and_video_url(self):
         return [self._content['profile_pic_url_hd']]
 
     def get_text(self) -> str:
         if self._full_name and self._content['biography']:
-            return self._full_name + '\n' + self._content['biography']
+            return self._full_name + '\n' + self._content['biography'] + self._url
 
         if not self._content['biography']:
             return self._full_name
 
-        return self._content['biography']
+        return self._content['biography'] + self._url
