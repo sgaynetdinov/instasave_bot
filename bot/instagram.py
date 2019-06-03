@@ -69,8 +69,12 @@ class Instagram:
     @classmethod
     def _is_instagram_account(cls, link: str) -> bool:
         url = urlsplit(link)
-        path = url.path.split('/')
 
+        _path = url.path
+        if not _path.endswith('/'):
+            _path += '/'
+
+        path = _path.split('/')
         if len(path) == 3 and path[1] != '':
             return True
 
