@@ -54,16 +54,16 @@ class InstagramTestCase(unittest.TestCase):
         url = 'https://www.instagram.com/p//' 
         self.assertFalse(Instagram._is_edge(url))
 
-    def test__is_instagram_account(self):
+    def test__is_account(self):
         url = 'https://www.instagram.com/nasa/'
-        self.assertTrue(Instagram._is_instagram_account(url))
+        self.assertTrue(Instagram._is_account(url))
 
         url = 'https://www.instagram.com/nasa'
-        self.assertTrue(Instagram._is_instagram_account(url))
+        self.assertTrue(Instagram._is_account(url))
 
         url = 'https://www.instagram.com/nasa?q=q'
-        self.assertTrue(Instagram._is_instagram_account(url))
+        self.assertTrue(Instagram._is_account(url))
 
         url = 'https://www.instagram.com//'
-        self.assertFalse(Instagram._is_instagram_account(url))
+        self.assertFalse(Instagram._is_account(url))
 
