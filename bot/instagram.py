@@ -123,7 +123,7 @@ class InstagramAccount:
         return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
 
     def get_photos_and_video_url(self):
-        return self._content['profile_pic_url_hd']
+        return [self._content['profile_pic_url_hd']]
 
     def get_text(self) -> str:
         return self._content['biography']
