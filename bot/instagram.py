@@ -52,6 +52,8 @@ class Instagram:
 
         if cls._is_instagram_edge(instagram_url):
             return InstagramEdge(instagram_json)
+        elif cls._is_instagram_account(instagram_url):
+            return InstagramAccount(instagram_json)
 
     @classmethod
     def _is_instagram_edge(cls, link: str) -> bool:
@@ -109,4 +111,19 @@ class InstagramEdge:
     @property
     def _content(self):
         return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+
+
+class InstagramAccount:
+    def __init__(self, instagram_json):
+        self.instagram_json = instagram_json
+
+    @property
+    def _content(self):
+        return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
+
+    def get_photos_and_video_url(self):
+        return self._content['profile_pic_url_hd']
+
+    def get_text(self) -> str:
+        return self._content['biography']
 
