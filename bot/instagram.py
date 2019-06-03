@@ -50,14 +50,14 @@ class Instagram:
         if cls._is_private(instagram_json):
             raise Instagram404Error
 
-        if cls._is_instagram_edge(instagram_url):
+        if cls._is_edge(instagram_url):
             return InstagramEdge(instagram_json)
 
         if cls._is_instagram_account(instagram_url):
             return InstagramAccount(instagram_json)
 
     @classmethod
-    def _is_instagram_edge(cls, link: str) -> bool:
+    def _is_edge(cls, link: str) -> bool:
         url = urlsplit(link)
         path = url.path.split('/')
 
