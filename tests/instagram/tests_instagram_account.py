@@ -28,7 +28,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/nasa/')
         
-        self.assertEqual(insta.get_text(), "NASA\nExplore the universe and discover our home planet with the official NASA Instagram account\nhttp://www.nasa.gov/")
+        self.assertEqual(insta.get_text(), "NASA\n\nExplore the universe and discover our home planet with the official NASA Instagram account\nhttp://www.nasa.gov/")
 
     @patch('bot.instagram.urlopen')
     def test_get_text_if_not_url(self, mock):
@@ -40,7 +40,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
         insta = Instagram.from_url('https://www.instagram.com/nasa/')
         del insta._content['external_url']
         
-        self.assertEqual(insta.get_text(), "NASA\nExplore the universe and discover our home planet with the official NASA Instagram account")
+        self.assertEqual(insta.get_text(), "NASA\n\nExplore the universe and discover our home planet with the official NASA Instagram account")
 
     @patch('bot.instagram.urlopen')
     def test_get_text_if_not_full_name(self, mock):

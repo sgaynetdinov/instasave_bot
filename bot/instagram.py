@@ -145,7 +145,7 @@ class InstagramAccount:
 
     def get_text(self) -> str:
         if self._full_name and self._content['biography']:
-            return self._full_name + '\n' + self._content['biography'] + self._url
+            return self._full_name + '\n\n' + self._content['biography'] + self._url
 
         if not self._content['biography']:
             return self._full_name
