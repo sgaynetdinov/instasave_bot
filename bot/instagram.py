@@ -19,9 +19,6 @@ class InstagramLinkError(InstagramError):
 
 
 class Instagram:
-    def __init__(self, instagram_json):
-        self.instagram_json = instagram_json
-
     @classmethod
     def _is_private(cls, instagram_json):
         if 'ProfilePage' not in instagram_json['entry_data']:
@@ -53,7 +50,42 @@ class Instagram:
         if cls._is_private(instagram_json):
             raise Instagram404Error
 
-        return cls(instagram_json)
+        if cls._is_instagram_edge(instagram_url):
+            return InstagramEdge(instagram_json)
+
+        if cls._is_instagram_account(instagram_url):
+            return InstagramAccount(instagram_json)
+
+    @classmethod
+    def _is_instagram_edge(cls, link: str) -> bool:
+        url = urlsplit(link)
+        path = url.path.split('/')
+
+        if len(path) == 4 and path[1] == 'p' and path[2] != '':
+            return True
+
+        return False
+
+    @classmethod
+    def _is_instagram_account(cls, link: str) -> bool:
+        url = urlsplit(link)
+        path = url.path.split('/')
+
+        if len(path) == 3 and path[1] != '':
+            return True
+
+        return False
+
+    @classmethod
+    def _is_instagram_link(cls, link: str):
+        url = urlsplit(link)
+        if url.netloc not in ["www.instagram.com", "instagram.com"]:
+            raise InstagramLinkError
+
+
+class InstagramEdge:
+    def __init__(self, instagram_json):
+        self.instagram_json = instagram_json
 
     def get_photos_and_video_url(self):
         image_url_items = []
@@ -81,8 +113,17 @@ class Instagram:
     def _content(self):
         return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
 
-    @classmethod
-    def _is_instagram_link(cls, link: str):
-        url = urlsplit(link)
-        if url.netloc not in ["www.instagram.com", "instagram.com"]:
-            raise InstagramLinkError
+
+class InstagramAccount:
+    def __init__(self, instagram_json):
+        self.instagram_json = instagram_json
+
+    @property
+    def _content(self):
+        return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
+
+    def get_photos_and_video_url(self):
+        return self._content['profile_pic_url_hd']
+
+    def get_text(self) -> str:
+        return self._content['biography']
