@@ -122,8 +122,21 @@ class InstagramAccount:
     def _content(self):
         return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
 
+    @property
+    def _full_name(self):
+        try:
+            return self._content['full_name']
+        except KeyError:
+            return ''
+
     def get_photos_and_video_url(self):
         return [self._content['profile_pic_url_hd']]
 
     def get_text(self) -> str:
+        if self._full_name and self._content['biography']:
+            return self._full_name + '\n' + self._content['biography']
+
+        if not self._content['biography']:
+            return self._full_name
+
         return self._content['biography']

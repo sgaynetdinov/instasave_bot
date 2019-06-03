@@ -28,7 +28,42 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
         insta = Instagram.from_url('https://www.instagram.com/nasa/')
         
+        self.assertEqual(insta.get_text(), "NASA\nExplore the universe and discover our home planet with the official NASA Instagram account")
+
+    @patch('bot.instagram.urlopen')
+    def test_get_text_if_not_full_name(self, mock):
+        with open('tests/instagram/account.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        insta = Instagram.from_url('https://www.instagram.com/nasa/')
+        del insta._content['full_name']
+        
         self.assertEqual(insta.get_text(), "Explore the universe and discover our home planet with the official NASA Instagram account")
+
+    @patch('bot.instagram.urlopen')
+    def test_full_name(self, mock):
+        with open('tests/instagram/account.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        insta = Instagram.from_url('https://www.instagram.com/nasa/')
+        
+        self.assertEqual(insta._full_name, "NASA")
+
+    @patch('bot.instagram.urlopen')
+    def test_full_name_if_key_error(self, mock):
+        with open('tests/instagram/account.html_') as fd:
+            m = MagicMock()
+            m.read.return_value = fd.read().encode()
+            mock.return_value = m
+
+        insta = Instagram.from_url('https://www.instagram.com/nasa/')
+        del insta._content['full_name']
+        
+        self.assertEqual(insta._full_name, "")
 
     @patch('bot.instagram.urlopen')
     def test_text_empty(self, mock):
@@ -40,5 +75,5 @@ class InstagramEdgeTestCase(unittest.TestCase):
         insta = Instagram.from_url('https://www.instagram.com/nasa/')
         insta._content['biography'] = ''
 
-        self.assertEqual(insta.get_text(), '')
+        self.assertEqual(insta.get_text(), 'NASA')
 
