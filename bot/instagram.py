@@ -52,10 +52,9 @@ class Instagram:
 
         if cls._is_instagram_edge(instagram_url):
             return InstagramEdge(instagram_json)
-        elif cls._is_instagram_account(instagram_url):
-            return InstagramAccount(instagram_json)
 
-        return
+        if cls._is_instagram_account(instagram_url):
+            return InstagramAccount(instagram_json)
 
     @classmethod
     def _is_instagram_edge(cls, link: str) -> bool:
