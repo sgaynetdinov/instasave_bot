@@ -1,4 +1,4 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sgaynetdinov/instasave_bot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sgaynetdinov/instasave_bot) ![CircleCI](https://img.shields.io/circleci/build/github/sgaynetdinov/instasave_bot/master.svg?label=build%20master)
 
 # Бот для Вконтакте
 
@@ -13,4 +13,4 @@
 - SECRET_KEY
 - CONFIRMATION_KEY
 - GROUP_ID
-- GROUP_TOKEN
+- GROUP_TOKE
