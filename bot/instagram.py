@@ -64,6 +64,9 @@ class Instagram:
         if len(path) == 4 and path[1] == 'p' and path[2] != '':
             return True
 
+        if len(path) == 5 and path[2] == 'p' and path[3] != '':
+            return True
+
         return False
 
     @classmethod

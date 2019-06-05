@@ -51,6 +51,9 @@ class InstagramTestCase(unittest.TestCase):
         url = 'https://www.instagram.com/p/Bq70HOsg0PW/' 
         self.assertTrue(Instagram._is_edge(url))
 
+        url = 'https://www.instagram.com/nasa/p/Bq70HOsg0PW/' 
+        self.assertTrue(Instagram._is_edge(url))
+
         url = 'https://www.instagram.com/p//' 
         self.assertFalse(Instagram._is_edge(url))
 
