@@ -138,10 +138,17 @@ class InstagramAccount:
 
     @property
     def _url(self):
+        url = None
+
         try:
-            return '\n' + self._content['external_url']
+            url = self._content['external_url']
         except KeyError:
+            pass
+
+        if not url:
             return ''
+        else:
+            return f'\n{url}'
 
     def get_photos_and_video_url(self):
         return [self._content['profile_pic_url_hd']]
