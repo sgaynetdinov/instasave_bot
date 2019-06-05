@@ -147,8 +147,8 @@ class InstagramAccount:
 
         if not url:
             return ''
-        else:
-            return f'\n{url}'
+
+        return f'\n{url}'
 
     def get_photos_and_video_url(self):
         return [self._content['profile_pic_url_hd']]
