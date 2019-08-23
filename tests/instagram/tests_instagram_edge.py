@@ -95,4 +95,3 @@ class InstagramEdgeTestCase(unittest.TestCase):
         insta = Instagram.from_url('https://www.instagram.com/p/BucgqYLgoaN/')
 
         self.assertEqual(insta.get_text(), '')
-
