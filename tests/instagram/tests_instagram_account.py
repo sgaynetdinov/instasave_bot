@@ -100,4 +100,3 @@ class InstagramEdgeTestCase(unittest.TestCase):
         insta._content['biography'] = ''
 
         self.assertEqual(insta.get_text(), 'NASA')
-

@@ -69,4 +69,3 @@ class InstagramTestCase(unittest.TestCase):
 
         url = 'https://www.instagram.com//'
         self.assertFalse(Instagram._is_account(url))
-
