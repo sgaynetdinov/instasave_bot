@@ -29,6 +29,11 @@ class Bot:
 
         group.messages_set_typing(user_id)
 
+        MESSAGE_IF_NOT_MEMBERS = os.environ.get("MESSAGE_IF_NOT_MEMBERS")
+        if MESSAGE_IF_NOT_MEMBERS:
+            if user_id not in group:
+                group.send_messages(user_id, message=MESSAGE_IF_NOT_MEMBERS)
+
         try:
             instagram = Instagram.from_url(link)
         except Instagram404Error:
