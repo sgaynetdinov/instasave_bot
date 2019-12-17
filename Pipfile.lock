@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8079a00fb534d847ac54eb416b598afa5780376796ba8a4218e50b6ddd8c66f5"
+            "sha256": "699c5c2e51d95b33a34e386b995b387593f9e5439271559f3726559374300b03"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -34,11 +34,11 @@
         },
         "py-vkontakte": {
             "hashes": [
-                "sha256:301cf3b842abf0ee69f11c2ae694c45578c727742a34dacd8ecd21c769576597",
-                "sha256:b43f106299029e61d0eda1f11699e252391858c4c91000ace289524c95eb10ea"
+                "sha256:1edb68a9649fbfe336dc9ddcfe598097921ed646b58c69dcd9778d04a2da9e3a",
+                "sha256:46ef0fac4c19c07bb77edfc77f6c67488c6f923c471efb11131e44d0f7e3fb79"
             ],
             "index": "pypi",
-            "version": "==5.69.2"
+            "version": "==5.70.0"
         },
         "python-mimeparse": {
             "hashes": [
