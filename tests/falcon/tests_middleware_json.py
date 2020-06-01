@@ -10,7 +10,7 @@ class JSONMiddlewareTestCase(testing.TestCase):
     def setUp(self):
         super().setUp()
 
-        self.app = falcon.API(middleware=JSONMiddleware())
+        self.app = falcon.API(middleware=[JSONMiddleware()])
         self.app.add_route('/', testing.SimpleTestResource(json={'title': 'Success test'}))
 
     def test_empty_request(self):
