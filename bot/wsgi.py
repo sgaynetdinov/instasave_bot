@@ -2,6 +2,7 @@ import os
 
 import falcon
 import sentry_sdk
+from sentry_sdk.integrations.excepthook import ExcepthookIntegration
 from sentry_sdk.integrations.falcon import FalconIntegration
 
 from .middleware import (CheckGroupMiddleware, JSONMiddleware,
@@ -12,7 +13,10 @@ sentry_dsn = os.environ.get('SENTRY_DSN')
 if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
-        integrations=[FalconIntegration()]
+        integrations=[
+            FalconIntegration(),
+            ExcepthookIntegration(always_run=True)
+        ]
     )
 
 application = falcon.API(middleware=[
