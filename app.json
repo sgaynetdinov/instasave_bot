@@ -1,7 +1,0 @@
-{
-  "name": "Instasave bot",
-  "description": "Bot vk.com – download image from instagram.com ✌",
-  "repository": "https://github.com/sgaynetdinov/instasave_bot",
-  "keywords": ["python", "vk.com", "bot"],
-  "image": "heroku/heroku"
-}
