@@ -1,1 +1,0 @@
-web: gunicorn bot.wsgi:application --workers=5 --timeout=60
