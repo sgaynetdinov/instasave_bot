@@ -1,7 +1,7 @@
 import json
 import os
 from urllib.error import HTTPError
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, urlopen
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
@@ -32,7 +32,7 @@ class Instagram:
         cls._is_instagram_link(instagram_url)
 
         try:
-            request = Request(f'{instagram_url}?__a=1')
+            request = Request(urljoin(instagram_url, '?__a=1'))
             request.add_header('Cookie', f'sessionid={os.environ["SESSION_ID"]}')
             response_text = urlopen(request).read()
         except HTTPError as err:
