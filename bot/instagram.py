@@ -1,7 +1,8 @@
 import json
+import os
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
 
@@ -21,31 +22,25 @@ class InstagramLinkError(InstagramError):
 class Instagram:
     @classmethod
     def _is_private(cls, instagram_json):
-        if 'ProfilePage' not in instagram_json['entry_data']:
-            return False
+        if not instagram_json:
+            return True
 
-        return instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']['is_private']
+        return False
 
     @classmethod
     def from_url(cls, instagram_url):
         cls._is_instagram_link(instagram_url)
 
         try:
-            response_text = urlopen(instagram_url).read()
+            request = Request(f'{instagram_url}?__a=1')
+            request.add_header('Cookie', f'sessionid={os.environ["SESSION_ID"]}')
+            response_text = urlopen(request).read()
         except HTTPError as err:
             if err.code == 404:
                 raise Instagram404Error
 
         response_text = response_text.decode()
-
-        start = '<script type="text/javascript">window._sharedData = '
-        stop = ';</script>'
-
-        start_position = response_text.find(start) + len(start)
-        stop_position = response_text.find(stop)
-
-        raw_json = response_text[start_position:stop_position]
-        instagram_json = json.loads(raw_json)
+        instagram_json = json.loads(response_text)
 
         if cls._is_private(instagram_json):
             raise Instagram404Error
@@ -118,7 +113,7 @@ class InstagramEdge:
 
     @property
     def _content(self):
-        return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+        return self.instagram_json['graphql']['shortcode_media']
 
 
 class InstagramAccount:
@@ -127,7 +122,7 @@ class InstagramAccount:
 
     @property
     def _content(self):
-        return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
+        return self.instagram_json['graphql']['user']
 
     @property
     def _full_name(self):
