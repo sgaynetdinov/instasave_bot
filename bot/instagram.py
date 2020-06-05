@@ -1,7 +1,9 @@
 import json
+import os
+
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
 
@@ -31,7 +33,9 @@ class Instagram:
         cls._is_instagram_link(instagram_url)
 
         try:
-            response_text = urlopen(instagram_url).read()
+            request = Request(f'{instagram_url}?__a=1')
+            request.add_header('Cookie', f'sessionid={os.environ["SESSION_ID"]}')
+            response_text = urlopen(request).read()
         except HTTPError as err:
             if err.code == 404:
                 raise Instagram404Error
