@@ -9,7 +9,7 @@ from bot.instagram import (Instagram, Instagram404Error, InstagramLinkError,
 class InstagramEdgeTestCase(unittest.TestCase):
     @patch('bot.instagram.urlopen')
     def test_get_photos_and_video_url__multi_photo(self, mock):
-        with open('tests/instagram/multi_photo.html_') as fd:
+        with open('tests/instagram/multi_photo.json') as fd:
             m = MagicMock() 
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -20,7 +20,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_photos_and_video_url__single_photo(self, mock):
-        with open('tests/instagram/single_photo.html_') as fd:
+        with open('tests/instagram/single_photo.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -31,7 +31,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_video_url__single_video(self, mock):
-        with open('tests/instagram/single_video.html_') as fd:
+        with open('tests/instagram/single_video.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -44,7 +44,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
  
     @patch('bot.instagram.urlopen')
     def test_get_video_url__multi_video(self, mock):
-        with open('tests/instagram/multi_video.html_') as fd:
+        with open('tests/instagram/multi_video.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -61,7 +61,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_url__when_both_video_and_photo(self, mock):
-        with open('tests/instagram/photo_and_video.html_') as fd:
+        with open('tests/instagram/photo_and_video.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -75,7 +75,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
  
     @patch('bot.instagram.urlopen')
     def test_get_text(self, mock):
-        with open('tests/instagram/text.html_') as fd:
+        with open('tests/instagram/text.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -87,7 +87,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_text_empty(self, mock):
-        with open('tests/instagram/text_empty.html_') as fd:
+        with open('tests/instagram/text_empty.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m

@@ -39,7 +39,7 @@ class InstagramTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_private_account(self, mock):
-        with open('tests/instagram/private_account.html_') as fd:
+        with open('tests/instagram/private_account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m

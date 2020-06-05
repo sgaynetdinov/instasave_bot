@@ -23,10 +23,10 @@ class InstagramLinkError(InstagramError):
 class Instagram:
     @classmethod
     def _is_private(cls, instagram_json):
-        if 'ProfilePage' not in instagram_json['entry_data']:
-            return False
+        if len(instagram_json) == 0:
+            return True
 
-        return instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']['is_private']
+        return False
 
     @classmethod
     def from_url(cls, instagram_url):
@@ -41,15 +41,7 @@ class Instagram:
                 raise Instagram404Error
 
         response_text = response_text.decode()
-
-        start = '<script type="text/javascript">window._sharedData = '
-        stop = ';</script>'
-
-        start_position = response_text.find(start) + len(start)
-        stop_position = response_text.find(stop)
-
-        raw_json = response_text[start_position:stop_position]
-        instagram_json = json.loads(raw_json)
+        instagram_json = json.loads(response_text)
 
         if cls._is_private(instagram_json):
             raise Instagram404Error
@@ -122,7 +114,7 @@ class InstagramEdge:
 
     @property
     def _content(self):
-        return self.instagram_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
+        return self.instagram_json['graphql']['shortcode_media']
 
 
 class InstagramAccount:
@@ -131,7 +123,7 @@ class InstagramAccount:
 
     @property
     def _content(self):
-        return self.instagram_json['entry_data']['ProfilePage'][0]['graphql']['user']
+        return self.instagram_json['graphql']['user']
 
     @property
     def _full_name(self):

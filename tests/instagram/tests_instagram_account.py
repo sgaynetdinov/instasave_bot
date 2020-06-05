@@ -6,10 +6,10 @@ from bot.instagram import (Instagram, Instagram404Error, InstagramLinkError,
                            urlopen)
 
 
-class InstagramEdgeTestCase(unittest.TestCase):
+class InstagramAccountTestCase(unittest.TestCase):
     @patch('bot.instagram.urlopen')
     def test_get_photos_and_video_url__single_photo(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -17,11 +17,11 @@ class InstagramEdgeTestCase(unittest.TestCase):
         insta = Instagram.from_url('https://www.instagram.com/nasa/')
 
         self.assertEqual(len(insta.get_photos_and_video_url()), 1)
-        self.assertEqual(insta.get_photos_and_video_url()[0], 'https://scontent-arn2-1.cdninstagram.com/vp/fd5e4107080aac2cad49178a961ae6e2/5D903E1D/t51.2885-19/s320x320/29090066_159271188110124_1152068159029641216_n.jpg?_nc_ht=scontent-arn2-1.cdninstagram.com')
+        self.assertEqual(insta.get_photos_and_video_url()[0], 'https://scontent-lax3-2.cdninstagram.com/v/account.jpg')
 
     @patch('bot.instagram.urlopen')
     def test_get_text(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -32,7 +32,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_text_if_not_url(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -44,7 +44,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_text_if_url_is_None(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -56,7 +56,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_get_text_if_not_full_name(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -68,7 +68,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_full_name(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -79,7 +79,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_full_name_if_key_error(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
@@ -91,7 +91,7 @@ class InstagramEdgeTestCase(unittest.TestCase):
 
     @patch('bot.instagram.urlopen')
     def test_text_empty(self, mock):
-        with open('tests/instagram/account.html_') as fd:
+        with open('tests/instagram/account.json') as fd:
             m = MagicMock()
             m.read.return_value = fd.read().encode()
             mock.return_value = m
