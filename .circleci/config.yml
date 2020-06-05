@@ -6,6 +6,7 @@ jobs:
       - image: circleci/python:3.6.9
         environment:
           PIPENV_VENV_IN_PROJECT: true
+          SESSION_ID: 100500
     steps:
       - checkout
       - run:
