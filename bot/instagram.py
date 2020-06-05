@@ -1,9 +1,8 @@
 import json
 import os
-
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import urlopen, Request
+from urllib.request import Request, urlopen
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
 
@@ -23,7 +22,7 @@ class InstagramLinkError(InstagramError):
 class Instagram:
     @classmethod
     def _is_private(cls, instagram_json):
-        if len(instagram_json) == 0:
+        if not instagram_json:
             return True
 
         return False
