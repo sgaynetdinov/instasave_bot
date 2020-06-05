@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/sgaynetdinov/instasave_bot/master.svg?label=build%20master)
+![CircleCI](https://img.shields.io/circleci/build/github/sgaynetdinov/instasave_bot/master.svg?label=build%20master)
 
 # Бот для Вконтакте
 
