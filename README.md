@@ -1,4 +1,4 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sgaynetdinov/instasave_bot) ![CircleCI](https://img.shields.io/circleci/build/github/sgaynetdinov/instasave_bot/master.svg?label=build%20master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/sgaynetdinov/instasave_bot) ![CircleCI](https://img.shields.io/circleci/build/github/sgaynetdinov/instasave_bot/master.svg?label=build%20master) [![Total alerts](https://img.shields.io/lgtm/alerts/g/sgaynetdinov/instasave_bot.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sgaynetdinov/instasave_bot/alerts/)
 
 # Бот для Вконтакте
 
