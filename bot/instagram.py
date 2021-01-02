@@ -22,10 +22,7 @@ class InstagramLinkError(InstagramError):
 class Instagram:
     @classmethod
     def _is_private(cls, instagram_json):
-        if not instagram_json:
-            return True
-
-        return False
+        return not instagram_json
 
     @classmethod
     def from_url(cls, instagram_url):
@@ -59,10 +56,7 @@ class Instagram:
         if len(path) == 4 and path[1] == 'p' and path[2] != '':
             return True
 
-        if len(path) == 5 and path[2] == 'p' and path[3] != '':
-            return True
-
-        return False
+        return len(path) == 5 and path[2] == 'p' and path[3] != ''
 
     @classmethod
     def _is_account(cls, link: str) -> bool:
@@ -73,10 +67,7 @@ class Instagram:
             _path += '/'
 
         path = _path.split('/')
-        if len(path) == 3 and path[1] != '':
-            return True
-
-        return False
+        return len(path) == 3 and path[1] != ''
 
     @classmethod
     def _is_instagram_link(cls, link: str):
