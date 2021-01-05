@@ -14,4 +14,4 @@ py-vkontakte = "==5.70.0"
 sentry-sdk = "==0.14.4"
 
 [requires]
-python_version = "3.6.9"
+python_version = "3.6.12"
