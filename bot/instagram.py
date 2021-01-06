@@ -31,10 +31,13 @@ class Instagram:
         try:
             request = Request(urljoin(instagram_url, '?__a=1'))
             request.add_header('Cookie', f'sessionid={os.environ["SESSION_ID"]}')
+            request.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36 OPR/18.0.1284.49')
             response_text = urlopen(request).read()
         except HTTPError as err:
             if err.code == 404:
                 raise Instagram404Error
+            else:
+                raise InstagramError
 
         response_text = response_text.decode()
         instagram_json = json.loads(response_text)
