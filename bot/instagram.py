@@ -1,10 +1,21 @@
 import json
 import os
+import logging
 from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, urlopen
+import sentry_sdk
+from sentry_sdk.integrations.logging import LoggingIntegration
 
 __all__ = ('Instagram', 'InstagramError', 'Instagram404Error', 'InstagramLinkError')
+
+
+if os.environ.get('SENTRY_ENABLE') == 'On':
+    sentry_logging = LoggingIntegration(level=logging.INFO, event_level=logging.ERROR)
+    sentry_sdk.init(
+        dsn=os.environ['SENTRY_DSN'],
+        integrations=[sentry_logging]
+    )
 
 
 class InstagramError(Exception):
@@ -40,7 +51,11 @@ class Instagram:
                 raise InstagramError
 
         response_text = response_text.decode()
-        instagram_json = json.loads(response_text)
+        try:
+            instagram_json = json.loads('asdf')
+        except json.JSONDecodeError as err:
+            logging.error(err, extra={'response_text': response_text, 'instagram_url': instagram_url})
+            raise
 
         if cls._is_private(instagram_json):
             raise Instagram404Error

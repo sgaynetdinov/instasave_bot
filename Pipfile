@@ -11,7 +11,7 @@ isort = "==4.3.9"
 falcon = "==1.4.0"
 gunicorn = "==19.7.1"
 py-vkontakte = "==5.70.0"
-sentry-sdk = "==0.14.4"
+sentry-sdk = "*"
 
 [requires]
 python_version = "3.6.12"
