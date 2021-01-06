@@ -52,7 +52,7 @@ class Instagram:
 
         response_text = response_text.decode()
         try:
-            instagram_json = json.loads('asdf')
+            instagram_json = json.loads(response_text)
         except json.JSONDecodeError as err:
             logging.error(err, extra={'response_text': response_text, 'instagram_url': instagram_url})
             raise
