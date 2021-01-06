@@ -16,3 +16,10 @@
 - GROUP_TOKE
 - SENTRY_DSN
 - SESSION_ID
+
+
+# Rapid local testing
+
+```sh
+# python bot/instagram.py INSTAGRAM_URL
+```

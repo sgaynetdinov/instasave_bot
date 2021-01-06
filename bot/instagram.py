@@ -150,3 +150,14 @@ class InstagramAccount:
             return self._full_name
 
         return self._content['biography'] + self._url
+
+
+if __name__ == '__main__':
+    import sys
+    link = sys.argv[1]
+    instagram = Instagram.from_url(link)
+    text = instagram.get_text()
+    print(f'Text: {text}')
+
+    for index, url in enumerate(instagram.get_photos_and_video_url()):
+        print(f'Media {index}: {url}')
