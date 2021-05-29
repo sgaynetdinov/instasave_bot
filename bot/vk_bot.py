@@ -30,8 +30,7 @@ class Bot:
         group.messages_set_typing(user_id)
 
         MESSAGE_IF_NOT_MEMBERS = os.environ.get("MESSAGE_IF_NOT_MEMBERS")
-        if MESSAGE_IF_NOT_MEMBERS and user_id not in group:
-            group.send_messages(user_id, message=MESSAGE_IF_NOT_MEMBERS)
+        user_not_member = MESSAGE_IF_NOT_MEMBERS and user_id not in group
 
         try:
             instagram = Instagram.from_url(link)
@@ -44,9 +43,14 @@ class Bot:
             if text:
                 group.send_messages(user_id, message=text)
 
-            for url in instagram.get_photos_and_video_url():
+            urls = instagram.get_photos_and_video_url():
+            for url in urls: 
                 group.messages_set_typing(user_id)
                 if '.mp4' in url:
                     group.send_messages(user_id, message=url)
                 else:
                     group.send_messages(user_id, image_files=[urlopen(url)])
+                if user_not_member and len(urls) > 1:
+                    group.messages_set_typing(user_id)
+                    group.send_messages(user_id, message=MESSAGE_IF_NOT_MEMBERS)
+                    continue
