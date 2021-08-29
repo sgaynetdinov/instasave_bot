@@ -43,7 +43,7 @@ class Bot:
             if text:
                 group.send_messages(user_id, message=text)
 
-            urls = instagram.get_photos_and_video_url():
+            urls = instagram.get_photos_and_video_url()
             for url in urls: 
                 group.messages_set_typing(user_id)
                 if '.mp4' in url:
