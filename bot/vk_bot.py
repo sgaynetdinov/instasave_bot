@@ -7,6 +7,10 @@ import vk
 from .instagram import Instagram, Instagram404Error, InstagramLinkError
 
 VK_GROUP_TOKEN = os.environ.get('GROUP_TOKEN')
+VK_GROUP_ID = os.environ.get('GROUP_ID')
+
+api = vk.Api(VK_GROUP_TOKEN)
+group = api.get_group(VK_GROUP_ID)
 
 
 class Bot:
@@ -24,9 +28,6 @@ class Bot:
             Process(target=self.handler_new_message, args=(link, user_id,)).start()
 
     def handler_new_message(self, link, user_id):
-        api = vk.Api(VK_GROUP_TOKEN)
-        group = api.get_group(os.environ.get('GROUP_ID'))
-
         group.messages_set_typing(user_id)
 
         MESSAGE_IF_NOT_MEMBERS = os.environ.get("MESSAGE_IF_NOT_MEMBERS")
