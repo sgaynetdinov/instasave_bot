@@ -24,8 +24,8 @@ class Bot:
             resp.data = b'ok'
 
         if data.get("type") == "message_new":
-            link = data['object']['body']
-            user_id = data['object']['user_id']
+            link = data['object']['text']
+            user_id = data['object']['from_id']
             Process(target=self.handler_new_message, args=(link, user_id,)).start()
 
     def handler_new_message(self, link, user_id):
